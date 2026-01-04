@@ -1,0 +1,5 @@
+{
+  "name": "The Oracle - Intelligent System Orchestrator",
+  "description": "The Central Command PWA. A conversational Front Desk Agent that diagnoses user needs and generates customized execution workflows across the Nexus agent network.",
+  "requestFramePermissions": []
+}
