@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Agent, OracleConfig, ToolCard } from '../types';
 import { NeuralCore } from './NeuralCore';
+import { renderIcon } from './AgentCard';
 
 interface AgentOverlayProps {
     agent: Agent | null;
@@ -26,21 +27,15 @@ const COLOR_OPTIONS = [
     { name: "Rose", class: "from-pink-500 to-rose-600" }
 ];
 
-const renderIcon = (icon: string) => {
-    const isImage = icon.startsWith('data:') || icon.startsWith('http');
-    if (isImage) {
-        return <img src={icon} alt="icon" className="w-full h-full object-cover rounded-md" />;
-    }
-    return icon;
-};
 
-export const AgentOverlay: React.FC<AgentOverlayProps> = ({ 
-    agent, 
-    onClose, 
-    allAgents, 
-    config, 
-    onUpdateAgent, 
-    onAddAgent, 
+
+export const AgentOverlay: React.FC<AgentOverlayProps> = ({
+    agent,
+    onClose,
+    allAgents,
+    config,
+    onUpdateAgent,
+    onAddAgent,
     onDeleteAgent,
     onUpdateConfig,
     onNavigate,
@@ -51,13 +46,13 @@ export const AgentOverlay: React.FC<AgentOverlayProps> = ({
 
     // Calculate navigation neighbors based on suggested nodes or fallback to linear order
     const agentIndex = agent ? allAgents.findIndex(a => a.id === agent.id) : -1;
-    
-    const prevAgent = agent?.suggestedPreviousNode 
-        ? allAgents.find(a => a.id === agent.suggestedPreviousNode) 
+
+    const prevAgent = agent?.suggestedPreviousNode
+        ? allAgents.find(a => a.id === agent.suggestedPreviousNode)
         : (agentIndex > 0 ? allAgents[agentIndex - 1] : null);
 
-    const nextAgent = agent?.suggestedNextNode 
-        ? allAgents.find(a => a.id === agent.suggestedNextNode) 
+    const nextAgent = agent?.suggestedNextNode
+        ? allAgents.find(a => a.id === agent.suggestedNextNode)
         : (agentIndex !== -1 && agentIndex < allAgents.length - 1 ? allAgents[agentIndex + 1] : null);
 
     // Handle launching the external agent interface
@@ -73,7 +68,7 @@ export const AgentOverlay: React.FC<AgentOverlayProps> = ({
 
     useEffect(() => {
         if (agent) {
-            setEditedAgent(JSON.parse(JSON.stringify(agent))); 
+            setEditedAgent(JSON.parse(JSON.stringify(agent)));
             // If it's a new agent or we're in admin mode, default to editing if it's the specific "NEW" unit
             if (agent.id.startsWith('NEW') && config.isAdmin) {
                 setIsEditing(true);
@@ -124,10 +119,10 @@ export const AgentOverlay: React.FC<AgentOverlayProps> = ({
 
     // --- ADMIN EDIT VIEW ---
     if (isEditing && editedAgent && config.isAdmin) {
-         return (
+        return (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-2xl animate-fade-in">
                 <div className="relative w-full max-w-5xl bg-[#020617] border border-cyan-500/30 rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col max-h-[95vh] animate-scale-in">
-                     <div className="h-20 bg-slate-900/60 border-b border-white/10 flex items-center justify-between px-8 shrink-0">
+                    <div className="h-20 bg-slate-900/60 border-b border-white/10 flex items-center justify-between px-8 shrink-0">
                         <h2 className="text-white font-black uppercase tracking-[0.3em] text-xs italic flex items-center gap-3">
                             <span className="text-cyan-400 text-lg">⚙️</span> Node Dashboard: <span className="text-cyan-400">{editedAgent.id}</span>
                         </h2>
@@ -135,113 +130,113 @@ export const AgentOverlay: React.FC<AgentOverlayProps> = ({
                             <button onClick={handleDelete} className="px-4 py-2 text-red-500 hover:text-red-400 text-[10px] uppercase tracking-widest transition-all font-bold">Delete Unit</button>
                             <button onClick={() => setIsEditing(false)} className="px-4 py-2 text-slate-500 hover:text-white text-[10px] uppercase tracking-widest transition-all font-bold">Exit Mode</button>
                         </div>
-                     </div>
-                     <div className="flex-1 overflow-y-auto p-8 space-y-12 scrollbar-hide bg-[radial-gradient(circle_at_50%_0%,rgba(6,182,212,0.1)_0%,transparent_50%)]">
-                         
-                         {/* BASIC IDENTITY */}
-                         <section className="space-y-6">
-                              <h3 className="text-[10px] uppercase tracking-[0.4em] text-slate-500 font-black flex items-center gap-2">
-                                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-500"></span> Identity_Matrix
-                              </h3>
-                              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                  <div className="space-y-2">
-                                      <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Node ID</label>
-                                      <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-bold" value={editedAgent.id} onChange={e => setEditedAgent({...editedAgent, id: e.target.value})} placeholder="e.g. Z1" />
-                                  </div>
-                                  <div className="space-y-2">
-                                      <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Name</label>
-                                      <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-bold" value={editedAgent.name} onChange={e => setEditedAgent({...editedAgent, name: e.target.value})} placeholder="e.g. Arbiter" />
-                                  </div>
-                                  <div className="space-y-2">
-                                      <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Role</label>
-                                      <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-bold" value={editedAgent.role} onChange={e => setEditedAgent({...editedAgent, role: e.target.value})} placeholder="e.g. Contracts" />
-                                  </div>
-                              </div>
-                         </section>
+                    </div>
+                    <div className="flex-1 overflow-y-auto p-8 space-y-12 scrollbar-hide bg-[radial-gradient(circle_at_50%_0%,rgba(6,182,212,0.1)_0%,transparent_50%)]">
 
-                         {/* NAVIGATION LINKAGE */}
-                         <section className="space-y-6">
-                              <h3 className="text-[10px] uppercase tracking-[0.4em] text-slate-500 font-black flex items-center gap-2">
-                                  <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span> Navigation_Linkage
-                              </h3>
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                  <div className="space-y-2">
-                                      <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Suggested Prev Node (ID)</label>
-                                      <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-bold" value={editedAgent.suggestedPreviousNode || ''} onChange={e => setEditedAgent({...editedAgent, suggestedPreviousNode: e.target.value})} placeholder="e.g. A" />
-                                  </div>
-                                  <div className="space-y-2">
-                                      <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Suggested Next Node (ID)</label>
-                                      <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-bold" value={editedAgent.suggestedNextNode || ''} onChange={e => setEditedAgent({...editedAgent, suggestedNextNode: e.target.value})} placeholder="e.g. B" />
-                                  </div>
-                              </div>
-                         </section>
+                        {/* BASIC IDENTITY */}
+                        <section className="space-y-6">
+                            <h3 className="text-[10px] uppercase tracking-[0.4em] text-slate-500 font-black flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-cyan-500"></span> Identity_Matrix
+                            </h3>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div className="space-y-2">
+                                    <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Node ID</label>
+                                    <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-bold" value={editedAgent.id} onChange={e => setEditedAgent({ ...editedAgent, id: e.target.value })} placeholder="e.g. Z1" />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Name</label>
+                                    <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-bold" value={editedAgent.name} onChange={e => setEditedAgent({ ...editedAgent, name: e.target.value })} placeholder="e.g. Arbiter" />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Role</label>
+                                    <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-bold" value={editedAgent.role} onChange={e => setEditedAgent({ ...editedAgent, role: e.target.value })} placeholder="e.g. Contracts" />
+                                </div>
+                            </div>
+                        </section>
 
-                         {/* NARRATIVE & INSIGHT */}
-                         <section className="space-y-6">
-                              <h3 className="text-[10px] uppercase tracking-[0.4em] text-slate-500 font-black flex items-center gap-2">
-                                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Neural_Narrative
-                              </h3>
-                              <div className="grid grid-cols-1 gap-6">
-                                  <div className="space-y-2">
-                                      <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Description</label>
-                                      <textarea className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-medium h-24" value={editedAgent.description} onChange={e => setEditedAgent({...editedAgent, description: e.target.value})} />
-                                  </div>
-                                  <div className="space-y-2">
-                                      <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Oracle Insight (Whisper)</label>
-                                      <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-bold italic" value={editedAgent.oracleInsight} onChange={e => setEditedAgent({...editedAgent, oracleInsight: e.target.value})} placeholder="What the orb whispers on hover..." />
-                                  </div>
-                              </div>
-                         </section>
+                        {/* NAVIGATION LINKAGE */}
+                        <section className="space-y-6">
+                            <h3 className="text-[10px] uppercase tracking-[0.4em] text-slate-500 font-black flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span> Navigation_Linkage
+                            </h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Suggested Prev Node (ID)</label>
+                                    <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-bold" value={editedAgent.suggestedPreviousNode || ''} onChange={e => setEditedAgent({ ...editedAgent, suggestedPreviousNode: e.target.value })} placeholder="e.g. A" />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Suggested Next Node (ID)</label>
+                                    <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-bold" value={editedAgent.suggestedNextNode || ''} onChange={e => setEditedAgent({ ...editedAgent, suggestedNextNode: e.target.value })} placeholder="e.g. B" />
+                                </div>
+                            </div>
+                        </section>
 
-                         {/* CAPABILITIES (TOOLCARD) */}
-                         <section className="space-y-6">
-                              <h3 className="text-[10px] uppercase tracking-[0.4em] text-slate-500 font-black flex items-center gap-2">
-                                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Operation_Specs
-                              </h3>
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                  <div className="space-y-2">
-                                      <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Mission Purpose</label>
-                                      <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-medium" value={editedAgent.toolCard?.purpose} onChange={e => updateToolCard({ purpose: e.target.value })} />
-                                  </div>
-                                  <div className="space-y-2">
-                                      <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Inputs Required</label>
-                                      <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-mono" value={editedAgent.toolCard?.inputNeeded} onChange={e => updateToolCard({ inputNeeded: e.target.value })} />
-                                  </div>
-                                  <div className="space-y-2">
-                                      <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Triggers (Comma Separated)</label>
-                                      <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none" value={editedAgent.toolCard?.useThisWhen.join(', ')} onChange={e => handleArrayInput('useThisWhen', e.target.value)} />
-                                  </div>
-                                  <div className="space-y-2">
-                                      <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Outputs (Comma Separated)</label>
-                                      <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none" value={editedAgent.toolCard?.outputDelivered.join(', ')} onChange={e => handleArrayInput('outputDelivered', e.target.value)} />
-                                  </div>
-                                  <div className="space-y-2">
-                                      <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Next Recommended Node</label>
-                                      <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-black" value={editedAgent.toolCard?.bestNextStep} onChange={e => updateToolCard({ bestNextStep: e.target.value })} />
-                                  </div>
-                                  <div className="space-y-2">
-                                      <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Theme Profile</label>
-                                      <select className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm outline-none font-bold appearance-none" value={editedAgent.color} onChange={e => setEditedAgent({...editedAgent, color: e.target.value})}>
-                                          {COLOR_OPTIONS.map(opt => <option key={opt.class} value={opt.class} className="bg-slate-900">{opt.name}</option>)}
-                                      </select>
-                                  </div>
-                              </div>
-                         </section>
+                        {/* NARRATIVE & INSIGHT */}
+                        <section className="space-y-6">
+                            <h3 className="text-[10px] uppercase tracking-[0.4em] text-slate-500 font-black flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Neural_Narrative
+                            </h3>
+                            <div className="grid grid-cols-1 gap-6">
+                                <div className="space-y-2">
+                                    <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Description</label>
+                                    <textarea className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-medium h-24" value={editedAgent.description} onChange={e => setEditedAgent({ ...editedAgent, description: e.target.value })} />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Oracle Insight (Whisper)</label>
+                                    <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-bold italic" value={editedAgent.oracleInsight} onChange={e => setEditedAgent({ ...editedAgent, oracleInsight: e.target.value })} placeholder="What the orb whispers on hover..." />
+                                </div>
+                            </div>
+                        </section>
 
-                         <button onClick={handleSave} className="w-full py-6 bg-cyan-500 text-black text-xs font-black uppercase tracking-[0.5em] rounded-2xl hover:bg-white transition-all shadow-2xl active:scale-[0.98]">
-                             Transmit_Node_Logic
-                         </button>
-                     </div>
+                        {/* CAPABILITIES (TOOLCARD) */}
+                        <section className="space-y-6">
+                            <h3 className="text-[10px] uppercase tracking-[0.4em] text-slate-500 font-black flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Operation_Specs
+                            </h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Mission Purpose</label>
+                                    <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-medium" value={editedAgent.toolCard?.purpose} onChange={e => updateToolCard({ purpose: e.target.value })} />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Inputs Required</label>
+                                    <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-mono" value={editedAgent.toolCard?.inputNeeded} onChange={e => updateToolCard({ inputNeeded: e.target.value })} />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Triggers (Comma Separated)</label>
+                                    <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none" value={editedAgent.toolCard?.useThisWhen.join(', ')} onChange={e => handleArrayInput('useThisWhen', e.target.value)} />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Outputs (Comma Separated)</label>
+                                    <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none" value={editedAgent.toolCard?.outputDelivered.join(', ')} onChange={e => handleArrayInput('outputDelivered', e.target.value)} />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Next Recommended Node</label>
+                                    <input className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm focus:border-cyan-500 outline-none font-black" value={editedAgent.toolCard?.bestNextStep} onChange={e => updateToolCard({ bestNextStep: e.target.value })} />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">Theme Profile</label>
+                                    <select className="w-full bg-slate-950/50 border border-white/5 rounded-xl p-4 text-white text-sm outline-none font-bold appearance-none" value={editedAgent.color} onChange={e => setEditedAgent({ ...editedAgent, color: e.target.value })}>
+                                        {COLOR_OPTIONS.map(opt => <option key={opt.class} value={opt.class} className="bg-slate-900">{opt.name}</option>)}
+                                    </select>
+                                </div>
+                            </div>
+                        </section>
+
+                        <button onClick={handleSave} className="w-full py-6 bg-cyan-500 text-black text-xs font-black uppercase tracking-[0.5em] rounded-2xl hover:bg-white transition-all shadow-2xl active:scale-[0.98]">
+                            Transmit_Node_Logic
+                        </button>
+                    </div>
                 </div>
             </div>
-         );
+        );
     }
 
     // --- MAIN OPTIMIZED VIEW ---
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/95 backdrop-blur-2xl animate-fade-in">
             <div className="relative w-full max-w-4xl bg-[#020617] border border-white/10 rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl animate-scale-in flex flex-col h-auto max-h-[95vh] sm:max-h-[90vh]">
-                
+
                 {/* COMPACT HEADER (Mobile Optimized) */}
                 <div className={`shrink-0 h-24 sm:h-36 bg-gradient-to-br ${agent.color} relative overflow-hidden flex flex-col justify-end p-5 sm:p-8`}>
                     <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]"></div>
@@ -254,18 +249,18 @@ export const AgentOverlay: React.FC<AgentOverlayProps> = ({
                     {config.isAdmin && agent.id !== 'ONE' && (
                         <button onClick={() => setIsEditing(true)} className="absolute top-4 left-4 z-50 h-6 px-3 rounded-full bg-cyan-500 hover:bg-white hover:text-black text-black flex items-center justify-center border border-white/10 text-[8px] uppercase tracking-[0.2em] font-black transition-all">Command_Center</button>
                     )}
-                    
+
                     <div className="relative z-10 flex items-end justify-between">
-                         <div className="flex items-center gap-4 sm:gap-5">
+                        <div className="flex items-center gap-4 sm:gap-5">
                             <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-[#020617]/90 border border-white/10 flex items-center justify-center text-2xl sm:text-3xl shadow-2xl shrink-0">
                                 {agent.id === 'ONE' ? <NeuralCore size={30} smSize={40} /> : renderIcon(agent.icon)}
                             </div>
                             <div>
                                 <div className="flex items-center gap-2 sm:gap-3 mb-1">
                                     <span className="text-[9px] sm:text-[10px] font-black text-white bg-white/10 border border-white/20 px-1.5 py-0.5 rounded uppercase tracking-widest">{agent.id}</span>
-                                    <h2 className="text-2xl sm:text-5xl font-black text-white tracking-tighter uppercase italic leading-none">{agent.name}</h2>
+                                    <span className="text-[12px] sm:text-[16px] text-white/80 font-bold uppercase tracking-[0.2em]">{agent.name}</span>
                                 </div>
-                                <span className="text-[8px] sm:text-[9px] text-white/80 font-bold uppercase tracking-[0.3em] block">{agent.role}</span>
+                                <h2 className="text-3xl sm:text-6xl font-black text-white tracking-tighter uppercase italic leading-none">{agent.role}</h2>
                                 {agent.squad && (
                                     <div className="mt-2 flex items-center gap-2">
                                         <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
@@ -282,15 +277,36 @@ export const AgentOverlay: React.FC<AgentOverlayProps> = ({
                 {/* COMPACT BODY - Single Card View */}
                 <div className="flex-1 overflow-y-auto p-3 sm:p-8 bg-[#020617] scrollbar-hide">
                     <div className="space-y-3 sm:space-y-8">
-                        
+
+                        {/* 0. PAIN POINTS (Formerly Triggers) */}
+                        {agent.toolCard && agent.toolCard.useThisWhen && agent.toolCard.useThisWhen.length > 0 && (
+                            <div className="bg-red-950/20 border border-red-500/20 p-4 sm:p-6 rounded-xl sm:rounded-[1.5rem] shadow-[0_0_30px_rgba(239,68,68,0.05)] flex flex-col">
+                                <h4 className="text-[8px] sm:text-[10px] font-black text-red-500 uppercase tracking-[0.3em] sm:tracking-[0.5em] mb-4 flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-400 animate-pulse"></span>
+                                    Pain Points
+                                </h4>
+                                <div className="grid gap-2 sm:gap-3">
+                                    {agent.toolCard.useThisWhen.map((pain, idx) => (
+                                        <div key={idx} className="bg-red-500/5 border border-red-500/10 p-3 rounded-lg sm:rounded-xl flex items-center gap-3">
+                                            <span className="text-red-500 text-lg font-black drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]">✕</span>
+                                            <p className="text-red-50 text-[11px] sm:text-sm font-black uppercase tracking-widest truncate">{pain}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
                         {/* 1. MISSION & INVENTORY - 2 Cols */}
                         <div className="grid grid-cols-2 gap-2 sm:gap-6">
-                             <div className="bg-slate-900/40 border border-white/5 p-3 sm:p-6 rounded-xl sm:rounded-[1.5rem] shadow-inner flex flex-col">
+                            <div className="bg-slate-900/40 border border-white/5 p-3 sm:p-6 rounded-xl sm:rounded-[1.5rem] shadow-inner flex flex-col">
                                 <h4 className="text-[7px] sm:text-[8px] font-black text-slate-500 uppercase tracking-[0.3em] sm:tracking-[0.5em] mb-2 sm:mb-4 flex items-center gap-2">
                                     <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-white"></span>
                                     Mission
                                 </h4>
-                                <p className="text-slate-100 text-[10px] sm:text-lg leading-snug sm:leading-relaxed font-light italic flex-1">{agent.toolCard?.purpose || agent.description}</p>
+                                {agent.oracleInsight && (
+                                    <p className="text-cyan-50 text-[11px] sm:text-sm leading-snug font-bold italic mb-3 border-l-2 border-cyan-500/30 pl-3">"{agent.oracleInsight}"</p>
+                                )}
+                                <p className="text-slate-300 text-[10px] sm:text-sm leading-snug sm:leading-relaxed font-light flex-1 pl-3">{agent.toolCard?.purpose || agent.description}</p>
                             </div>
                             <div className="bg-slate-900/40 border border-white/5 p-3 sm:p-6 rounded-xl sm:rounded-[1.5rem] shadow-inner flex flex-col">
                                 <h4 className="text-[7px] sm:text-[8px] font-black text-slate-500 uppercase tracking-[0.3em] sm:tracking-[0.5em] mb-2 sm:mb-4 flex items-center gap-2">
@@ -301,37 +317,26 @@ export const AgentOverlay: React.FC<AgentOverlayProps> = ({
                             </div>
                         </div>
 
-                        {/* 2. TRIGGERS & CONSTRAINTS - 2 Cols */}
-                        <div className="grid grid-cols-2 gap-2 sm:gap-6">
+                        {/* 2. CONSTRAINTS (Full width since Triggers moved up) */}
+                        {agent.toolCard && agent.toolCard.doNotUseWhen && agent.toolCard.doNotUseWhen.length > 0 && agent.toolCard.doNotUseWhen[0] !== "None" && (
                             <div className="space-y-2 sm:space-y-4">
-                                <h4 className="text-[7px] sm:text-[8px] font-black text-green-500 uppercase tracking-[0.3em] sm:tracking-[0.5em] ml-1 sm:ml-2">Triggers</h4>
-                                <div className="grid gap-1 sm:gap-2">
-                                    {(agent.toolCard?.useThisWhen || ["Request"]).map((trigger, idx) => (
-                                        <div key={idx} className="bg-green-500/5 border border-green-500/10 p-2 sm:p-3 rounded-lg sm:rounded-xl flex items-center gap-2 sm:gap-3">
-                                            <span className="text-green-500 text-[8px] sm:text-xs">✓</span>
-                                            <p className="text-slate-300 text-[8px] sm:text-xs font-bold uppercase tracking-wide truncate">{trigger}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="space-y-2 sm:space-y-4">
-                                <h4 className="text-[7px] sm:text-[8px] font-black text-red-500 uppercase tracking-[0.3em] sm:tracking-[0.5em] ml-1 sm:ml-2">Constraints</h4>
-                                <div className="grid gap-1 sm:gap-2">
-                                    {(agent.toolCard?.doNotUseWhen || ["None"]).map((constraint, idx) => (
-                                        <div key={idx} className="bg-red-500/5 border border-red-500/10 p-2 sm:p-3 rounded-lg sm:rounded-xl flex items-center gap-2 sm:gap-3">
-                                            <span className="text-red-500 text-[8px] sm:text-xs">✕</span>
+                                <h4 className="text-[7px] sm:text-[8px] font-black text-orange-500 uppercase tracking-[0.3em] sm:tracking-[0.5em] ml-1 sm:ml-2">Constraints</h4>
+                                <div className="flex flex-wrap gap-2">
+                                    {agent.toolCard.doNotUseWhen.map((constraint, idx) => (
+                                        <div key={idx} className="bg-orange-500/5 border border-orange-500/10 p-2 sm:p-3 rounded-lg sm:rounded-xl flex items-center gap-2 sm:gap-3">
+                                            <span className="text-orange-500 text-[8px] sm:text-xs">⚠</span>
                                             <p className="text-slate-300 text-[8px] sm:text-xs font-bold uppercase tracking-wide truncate">{constraint}</p>
                                         </div>
                                     ))}
                                 </div>
                             </div>
-                        </div>
+                        )}
 
-                         <div className="h-px bg-white/5 w-full hidden sm:block"></div>
+                        <div className="h-px bg-white/5 w-full hidden sm:block"></div>
 
                         {/* 3. DELIVERABLES & SECTORS - 2 Cols */}
                         <div className="grid grid-cols-2 gap-2 sm:gap-6">
-                             <div className="space-y-2 sm:space-y-4">
+                            <div className="space-y-2 sm:space-y-4">
                                 <h4 className="text-[7px] sm:text-[8px] font-black text-blue-400 uppercase tracking-[0.3em] sm:tracking-[0.5em] ml-1 sm:ml-2">Outputs</h4>
                                 <div className="flex flex-wrap gap-1 sm:gap-2">
                                     {(agent.toolCard?.outputDelivered || []).map((item, i) => (
@@ -341,7 +346,7 @@ export const AgentOverlay: React.FC<AgentOverlayProps> = ({
                                     ))}
                                 </div>
                             </div>
-                             <div className="space-y-2 sm:space-y-4">
+                            <div className="space-y-2 sm:space-y-4">
                                 <h4 className="text-[7px] sm:text-[8px] font-black text-purple-400 uppercase tracking-[0.3em] sm:tracking-[0.5em] ml-1 sm:ml-2">Sectors</h4>
                                 <div className="flex flex-wrap gap-1 sm:gap-2">
                                     {(agent.toolCard?.useCases || []).map((item, i) => (
@@ -358,7 +363,7 @@ export const AgentOverlay: React.FC<AgentOverlayProps> = ({
                             <h4 className="text-[7px] sm:text-[8px] font-black text-slate-500 uppercase tracking-[0.3em] sm:tracking-[0.5em] ml-1 sm:ml-2 mb-2">Suggested Nodes</h4>
                             <div className="grid grid-cols-2 gap-2 sm:gap-4">
                                 {prevAgent ? (
-                                    <div 
+                                    <div
                                         onClick={() => onNavigate(prevAgent)}
                                         className="bg-slate-900/40 border border-white/5 p-3 sm:p-5 rounded-xl sm:rounded-2xl flex items-center gap-3 sm:gap-4 cursor-pointer hover:border-white/20 hover:bg-slate-900/80 transition-all active:scale-[0.99] group h-full"
                                     >
@@ -375,7 +380,7 @@ export const AgentOverlay: React.FC<AgentOverlayProps> = ({
                                 )}
 
                                 {nextAgent ? (
-                                    <div 
+                                    <div
                                         onClick={() => onNavigate(nextAgent)}
                                         className="bg-slate-900/40 border border-white/5 p-3 sm:p-5 rounded-xl sm:rounded-2xl flex items-center justify-end gap-3 sm:gap-4 cursor-pointer hover:border-white/20 hover:bg-slate-900/80 transition-all active:scale-[0.99] group h-full text-right"
                                     >

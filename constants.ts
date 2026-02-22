@@ -10,7 +10,7 @@ export const ORACLE_NODE: Agent = {
   description: 'The core consciousness and administrative interface of the Nexus system, specializing in customized workflow generation.',
   oracleInsight: 'My current focus: Orchestrating your strategic dominance.',
   color: 'from-blue-900 to-indigo-950',
-  icon: '🔮',
+  icon: "/icon.svg",
   squad: { id: "COMMAND", name: "ORACLE", domain: "itsyouonline.com", color: "Blue #1e3a8a" }
 };
 
@@ -39,7 +39,7 @@ export const AGENTS: Agent[] = [
     description: "Shreds legal ambiguity to secure maximum leverage and IP protection.",
     oracleInsight: "Shredding legal ambiguity to secure absolute sovereign leverage.",
     color: "from-slate-600 to-slate-800",
-    icon: "⚖️",
+    icon: "/agent-icons/a.svg",
     url: "https://nexus.ai/arbiter",
     toolCard: {
       purpose: "Shreds legal ambiguity to secure maximum leverage and IP protection.",
@@ -61,7 +61,7 @@ export const AGENTS: Agent[] = [
     description: "Defines the highest-level strategic objectives and market dominance vectors.",
     oracleInsight: "Architecting the North Star vector for total market supremacy.",
     color: "from-indigo-900 to-slate-900",
-    icon: "🏔️",
+    icon: "/agent-icons/aa.svg",
     url: "https://nexus.ai/apex",
     toolCard: {
       purpose: "Defines the highest-level strategic objectives and market dominance vectors.",
@@ -83,7 +83,7 @@ export const AGENTS: Agent[] = [
     description: "Guards the customer relationship to prevent churn and ensure continuity.",
     oracleInsight: "Fortifying the perimeter to render client churn mathematically impossible.",
     color: "from-blue-600 to-indigo-700",
-    icon: "🛡️",
+    icon: "/agent-icons/b.svg",
     url: "https://nexus.ai/bulwark",
     toolCard: {
       purpose: "Guards the customer relationship to prevent churn and ensure continuity.",
@@ -105,7 +105,7 @@ export const AGENTS: Agent[] = [
     description: "Validates the connection between the high-level offer and the 'bleeding neck' problem.",
     oracleInsight: "Calibrating the offer to strike the market's bleeding neck artery.",
     color: "from-blue-800 to-indigo-900",
-    icon: "🌉",
+    icon: "/agent-icons/bb.svg",
     url: "https://nexus.ai/bridge",
     toolCard: {
       purpose: "Validates the connection between the high-level offer and the 'bleeding neck' problem.",
@@ -127,7 +127,7 @@ export const AGENTS: Agent[] = [
     description: "Architects the price floor and ceiling for maximum structural profit.",
     oracleInsight: "Enforcing a pricing architecture that mandates maximum profit extraction.",
     color: "from-amber-500 to-yellow-600",
-    icon: "🏛️",
+    icon: "/agent-icons/c.svg",
     url: "https://nexus.ai/centurion",
     toolCard: {
       purpose: "Architects the price floor and ceiling for maximum structural profit.",
@@ -149,7 +149,7 @@ export const AGENTS: Agent[] = [
     description: "Audits the financial engine to ensure scalability and structural profit.",
     oracleInsight: "Auditing the economic engine for infinite structural scalability.",
     color: "from-blue-600 to-blue-800",
-    icon: "💠",
+    icon: "/agent-icons/cc.svg",
     url: "https://nexus.ai/core",
     toolCard: {
       purpose: "Audits the financial engine to ensure scalability and structural profit.",
@@ -171,7 +171,7 @@ export const AGENTS: Agent[] = [
     description: "Generates high-velocity, scroll-stopping attention in the first 3 seconds.",
     oracleInsight: "Igniting high-velocity attention spikes to arrest the scroll instantly.",
     color: "from-orange-500 to-red-500",
-    icon: "🧨",
+    icon: "/agent-icons/d.svg",
     url: "https://nexus.ai/dynamo",
     toolCard: {
       purpose: "Generates high-velocity, scroll-stopping attention in the first 3 seconds.",
@@ -193,7 +193,7 @@ export const AGENTS: Agent[] = [
     description: "Generates high-intent traffic mechanisms and acquisition logic.",
     oracleInsight: "Engineering the high-intent traffic systems for massive acquisition volume.",
     color: "from-cyan-600 to-teal-700",
-    icon: "🏎️",
+    icon: "/agent-icons/dd.svg",
     url: "https://nexus.ai/drive",
     toolCard: {
       purpose: "Generates high-intent traffic mechanisms and acquisition logic.",
@@ -215,7 +215,7 @@ export const AGENTS: Agent[] = [
     description: "Creates brand omnipresence by distributing messages across all platforms.",
     oracleInsight: "Broadcasting your signal across all frequencies for total omni-presence.",
     color: "from-cyan-400 to-blue-500",
-    icon: "📣",
+    icon: "/agent-icons/e.svg",
     url: "https://nexus.ai/echo",
     toolCard: {
       purpose: "Creates brand omnipresence by distributing messages across all frequencies.",
@@ -237,7 +237,7 @@ export const AGENTS: Agent[] = [
     description: "Maximizes brand amplification through multiplication and high-tier PR.",
     oracleInsight: "Multiplying authority vectors through high-tier industrial amplification.",
     color: "from-sky-500 to-cyan-600",
-    icon: "📡",
+    icon: "/agent-icons/ee.svg",
     url: "https://nexus.ai/expand",
     toolCard: {
       purpose: "Maximizes brand amplification through multiplication and high-tier PR.",
@@ -259,7 +259,7 @@ export const AGENTS: Agent[] = [
     description: "Bridges the gap from 'cold' to 'sold' through direct engagement.",
     oracleInsight: "Piercing cold markets to extract high-ticket capital.",
     color: "from-green-600 to-emerald-700",
-    icon: "⛺",
+    icon: "/agent-icons/f.svg",
     url: "https://nexus.ai/frontier",
     toolCard: {
       purpose: "Bridges the gap from 'cold' to 'sold' through direct engagement.",
@@ -281,7 +281,7 @@ export const AGENTS: Agent[] = [
     description: "Engineers rapid pivots to exploit market shifts and economic changes.",
     oracleInsight: "Engineering rapid tactical pivots to exploit market chaos.",
     color: "from-teal-500 to-emerald-600",
-    icon: "🌊",
+    icon: "/agent-icons/ff.svg",
     url: "https://nexus.ai/flux",
     toolCard: {
       purpose: "Engineers rapid pivots to exploit market shifts and economic changes.",
@@ -303,7 +303,7 @@ export const AGENTS: Agent[] = [
     description: "Scrubs all assets for compliance, policy, and institutional risk.",
     oracleInsight: "Sanitizing all asset classes for institutional-grade compliance.",
     color: "from-gray-600 to-gray-800",
-    icon: "🏯",
+    icon: "/agent-icons/g.svg",
     url: "https://nexus.ai/garrison",
     toolCard: {
       purpose: "Scrubs all assets for compliance, policy, and institutional risk.",
@@ -325,7 +325,7 @@ export const AGENTS: Agent[] = [
     description: "Builds the scalable infrastructure and deep architectural SOPs.",
     oracleInsight: "Constructing the industrial-grade lattice for infinite operational scale.",
     color: "from-emerald-600 to-green-700",
-    icon: "🏁",
+    icon: "/agent-icons/gg.svg",
     url: "https://nexus.ai/grid",
     toolCard: {
       purpose: "Builds the scalable infrastructure and deep architectural SOPs.",
@@ -347,7 +347,7 @@ export const AGENTS: Agent[] = [
     description: "Neutralizes friction and manages reputation in high-stress environments.",
     oracleInsight: "Silencing reputational friction before it breaches the containment field.",
     color: "from-slate-700 to-black",
-    icon: "🤫",
+    icon: "/agent-icons/h.svg",
     url: "https://nexus.ai/hush",
     toolCard: {
       purpose: "Neutralizes friction and manages reputation in high-stress environments.",
@@ -369,7 +369,7 @@ export const AGENTS: Agent[] = [
     description: "Engineers tribal loyalty, audience engagement, and community logic.",
     oracleInsight: "Engineering deep tribal loyalty to weaponize your audience.",
     color: "from-green-500 to-lime-600",
-    icon: "🐝",
+    icon: "/agent-icons/hh.svg",
     url: "https://nexus.ai/hive",
     toolCard: {
       purpose: "Engineers tribal loyalty, audience engagement, and community logic.",
@@ -391,7 +391,7 @@ export const AGENTS: Agent[] = [
     description: "Builds the logic bridges and technical stack required for scale.",
     oracleInsight: "Fusing the technical stack into a singular self-driving organism.",
     color: "from-indigo-500 to-purple-600",
-    icon: "🏗️",
+    icon: "/agent-icons/i.svg",
     url: "https://nexus.ai/infra",
     toolCard: {
       purpose: "Builds the logic bridges and technical stack required for scale.",
@@ -413,7 +413,7 @@ export const AGENTS: Agent[] = [
     description: "Mines competitive data for hidden insights and 'Blue Ocean' advantages.",
     oracleInsight: "Extracting deep-web competitor intelligence for asymmetric advantage.",
     color: "from-lime-600 to-yellow-600",
-    icon: "🕵️",
+    icon: "/agent-icons/ii.svg",
     url: "https://nexus.ai/intel",
     toolCard: {
       purpose: "Mines competitive data for hidden insights and 'Blue Ocean' advantages.",
@@ -435,7 +435,7 @@ export const AGENTS: Agent[] = [
     description: "Snipe appointments through 1-on-1 direct message conversations.",
     oracleInsight: "Sniping high-value targets directly from the inbox with surgical precision.",
     color: "from-pink-500 to-rose-600",
-    icon: "🏹",
+    icon: "/agent-icons/j.svg",
     url: "https://nexus.ai/juno",
     toolCard: {
       purpose: "Snipe appointments through 1-on-1 direct message conversations.",
@@ -457,7 +457,7 @@ export const AGENTS: Agent[] = [
     description: "Shocks stagnant leads or inactive systems into immediate cash-flow action.",
     oracleInsight: "Administering a high-voltage shock to resurrect dead capital.",
     color: "from-yellow-500 to-orange-600",
-    icon: "🔋",
+    icon: "/agent-icons/jj.svg",
     url: "https://nexus.ai/jolt",
     toolCard: {
       purpose: "Shocks stagnant leads or inactive systems into immediate cash-flow action.",
@@ -479,7 +479,7 @@ export const AGENTS: Agent[] = [
     description: "Scripts high-intensity Video Sales Letters that convert at scale.",
     oracleInsight: "Scripting the visual neural pathways for automated conversion at scale.",
     color: "from-red-600 to-orange-600",
-    icon: "🎥",
+    icon: "/agent-icons/k.svg",
     url: "https://nexus.ai/kinetix",
     toolCard: {
       purpose: "Scripts high-intensity Video Sales Letters that convert at scale.",
@@ -501,7 +501,7 @@ export const AGENTS: Agent[] = [
     description: "Uses gates, limits, and waitlists to increase perceived value and demand.",
     oracleInsight: "Constricting supply with surgical scarcity gates to force immediate demand.",
     color: "from-orange-600 to-red-600",
-    icon: "🪢",
+    icon: "/agent-icons/kk.svg",
     url: "https://nexus.ai/knot",
     toolCard: {
       purpose: "Uses gates, limits, and waitlists to increase perceived value and demand.",
@@ -523,7 +523,7 @@ export const AGENTS: Agent[] = [
     description: "Tracks 'ready-to-buy' behavior patterns and identifying hot leads.",
     oracleInsight: "Triangulating the exact digital coordinates of high-intent buyers.",
     color: "from-blue-500 to-cyan-500",
-    icon: "🎯",
+    icon: "/agent-icons/l.svg",
     url: "https://nexus.ai/locus",
     toolCard: {
       purpose: "Tracks 'ready-to-buy' behavior patterns and identifying hot leads.",
@@ -545,7 +545,7 @@ export const AGENTS: Agent[] = [
     description: "Converts interest into high-ticket transactions with zero friction.",
     oracleInsight: "Fusing high-intent signal into high-ticket transaction reality.",
     color: "from-red-600 to-rose-700",
-    icon: "🔗",
+    icon: "/agent-icons/ll.svg",
     url: "https://nexus.ai/link",
     toolCard: {
       purpose: "Converts interest into high-ticket transactions with zero friction.",
@@ -567,7 +567,7 @@ export const AGENTS: Agent[] = [
     description: "Turns client wins into structural, automated referral events.",
     oracleInsight: "Transmuting client success into a perpetual viral growth loop.",
     color: "from-yellow-400 to-amber-500",
-    icon: "🥇",
+    icon: "/agent-icons/m.svg",
     url: "https://nexus.ai/midas",
     toolCard: {
       purpose: "Turns client wins into structural, automated referral events.",
@@ -589,7 +589,7 @@ export const AGENTS: Agent[] = [
     description: "Leverages behavioral economics and buyer psychology to influence choice.",
     oracleInsight: "Decoding the buyer's neural map to bypass all psychological resistance.",
     color: "from-rose-600 to-pink-700",
-    icon: "🧠",
+    icon: "/agent-icons/mm.svg",
     url: "https://nexus.ai/mind",
     toolCard: {
       purpose: "Leverages behavioral economics and buyer psychology to influence choice.",
@@ -611,7 +611,7 @@ export const AGENTS: Agent[] = [
     description: "Turns messy manual tasks into clean, industrial Standard Operating Procedures.",
     oracleInsight: "Crystallizing operational chaos into rigid industrial-grade protocols.",
     color: "from-slate-500 to-gray-600",
-    icon: "🔗",
+    icon: "/agent-icons/n.svg",
     url: "https://nexus.ai/net",
     toolCard: {
       purpose: "Turns messy manual tasks into clean, industrial Standard Operating Procedures.",
@@ -633,7 +633,7 @@ export const AGENTS: Agent[] = [
     description: "Connects disparate tools into a single self-driving 'Sovereign Machine'.",
     oracleInsight: "Weaving the automated nervous system of your sovereign machine.",
     color: "from-purple-600 to-indigo-700",
-    icon: "🕸️",
+    icon: "/agent-icons/nn.svg",
     url: "https://nexus.ai/node",
     toolCard: {
       purpose: "Connects disparate tools into a single self-driving 'Sovereign Machine'.",
@@ -655,7 +655,7 @@ export const AGENTS: Agent[] = [
     description: "Audits the business for 'Built-to-Sell' scores and exit readiness.",
     oracleInsight: "Calculating the precise coordinates for your final sovereign exit event.",
     color: "from-violet-600 to-purple-800",
-    icon: "Ω",
+    icon: "/agent-icons/o.svg",
     url: "https://nexus.ai/omega",
     toolCard: {
       purpose: "Audits the business for 'Built-to-Sell' scores and exit readiness.",
@@ -677,7 +677,7 @@ export const AGENTS: Agent[] = [
     description: "Designs retention loops that keep customers within the ecosystem forever.",
     oracleInsight: "Designing inescapable gravitational loops for infinite lifetime value.",
     color: "from-indigo-600 to-blue-700",
-    icon: "🪐",
+    icon: "/agent-icons/oo.svg",
     url: "https://nexus.ai/orbit",
     toolCard: {
       purpose: "Designs retention loops that keep customers within the ecosystem forever.",
@@ -699,7 +699,7 @@ export const AGENTS: Agent[] = [
     description: "Shreds long-form video content into 50+ high-engagement micro-assets.",
     oracleInsight: "Fragmenting core assets into a swarm of high-velocity micro-content.",
     color: "from-pink-500 to-red-500",
-    icon: "💓",
+    icon: "/agent-icons/p.svg",
     url: "https://nexus.ai/pulse",
     toolCard: {
       purpose: "Shreds long-form video content into 50+ high-engagement micro-assets.",
@@ -721,7 +721,7 @@ export const AGENTS: Agent[] = [
     description: "Refines the core product/service to a world-class, undisputed standard.",
     oracleInsight: "Refining the core asset into an undisputed global standard of excellence.",
     color: "from-blue-600 to-cyan-700",
-    icon: "💎",
+    icon: "/agent-icons/pp.svg",
     url: "https://nexus.ai/prime",
     toolCard: {
       purpose: "Refines the core product/service to a world-class, undisputed standard.",
@@ -743,7 +743,7 @@ export const AGENTS: Agent[] = [
     description: "Logic-tests every headline and sentence for maximum conversion.",
     oracleInsight: "Logic-testing every syllable for absolute conversion efficiency.",
     color: "from-teal-400 to-teal-600",
-    icon: "✒️",
+    icon: "/agent-icons/q.svg",
     url: "https://nexus.ai/quark",
     toolCard: {
       purpose: "Logic-tests every headline and sentence for maximum conversion.",
@@ -765,7 +765,7 @@ export const AGENTS: Agent[] = [
     description: "Tracks, measures, and visualizes success against hard industrial targets.",
     oracleInsight: "Visualizing the hard industrial targets required for sovereign scale.",
     color: "from-cyan-600 to-teal-700",
-    icon: "📊",
+    icon: "/agent-icons/qq.svg",
     url: "https://nexus.ai/quota",
     toolCard: {
       purpose: "Tracks, measures, and visualizes success against hard industrial targets.",
@@ -787,7 +787,7 @@ export const AGENTS: Agent[] = [
     description: "Dominates high-intent search terms to capture organic traffic.",
     oracleInsight: "Seizing the digital real estate for permanent organic dominance.",
     color: "from-green-500 to-lime-600",
-    icon: "🌳",
+    icon: "/agent-icons/r.svg",
     url: "https://nexus.ai/root",
     toolCard: {
       purpose: "Dominates high-intent search terms to capture organic traffic.",
@@ -809,7 +809,7 @@ export const AGENTS: Agent[] = [
     description: "Identifies and exploits major gaps in competitor armor or market standard.",
     oracleInsight: "Exploiting structural gaps in the market for massive asymmetric upside.",
     color: "from-teal-600 to-emerald-700",
-    icon: "🌋",
+    icon: "/agent-icons/rr.svg",
     url: "https://nexus.ai/rift",
     toolCard: {
       purpose: "Identifies and exploits major gaps in competitor armor or market standard.",
@@ -831,7 +831,7 @@ export const AGENTS: Agent[] = [
     description: "Ingests the Brand Bible to ensure the AI sounds exactly like you.",
     oracleInsight: "Ingesting the Brand Bible to clone your unique resonance frequency.",
     color: "from-fuchsia-500 to-purple-600",
-    icon: "📜",
+    icon: "/agent-icons/s.svg",
     url: "https://nexus.ai/scroll",
     toolCard: {
       purpose: "Ingests the Brand Bible to ensure the AI sounds exactly like you.",
@@ -853,7 +853,7 @@ export const AGENTS: Agent[] = [
     description: "Harmonizes human resources, operational rhythm, and brand culture.",
     oracleInsight: "Synchronizing human capital to the rhythm of elite performance culture.",
     color: "from-emerald-600 to-green-700",
-    icon: "🤝",
+    icon: "/agent-icons/ss.svg",
     url: "https://nexus.ai/sync",
     toolCard: {
       purpose: "Harmonizes human resources, operational rhythm, and brand culture.",
@@ -875,7 +875,7 @@ export const AGENTS: Agent[] = [
     description: "Performs a deep autopsy on competitor weaknesses and funnel structure.",
     oracleInsight: "Conducting a forensic autopsy on competitor weakness and fragility.",
     color: "from-slate-600 to-slate-900",
-    icon: "📖",
+    icon: "/agent-icons/t.svg",
     url: "https://nexus.ai/tome",
     toolCard: {
       purpose: "Performs a deep autopsy on competitor weaknesses and funnel structure.",
@@ -897,7 +897,7 @@ export const AGENTS: Agent[] = [
     description: "Turns static energy into high-velocity kinetic forward motion.",
     oracleInsight: "Igniting static potential into kinetic high-velocity momentum.",
     color: "from-green-600 to-lime-700",
-    icon: "🚜",
+    icon: "/agent-icons/tt.svg",
     url: "https://nexus.ai/traction",
     toolCard: {
       purpose: "Turns static energy into high-velocity kinetic forward motion.",
@@ -919,7 +919,7 @@ export const AGENTS: Agent[] = [
     description: "Secures the perimeter of your deep-work hours and team productivity.",
     oracleInsight: "Fortifying the deep-work perimeter against all distraction vectors.",
     color: "from-sky-400 to-blue-500",
-    icon: "🌤️",
+    icon: "/agent-icons/u.svg",
     url: "https://nexus.ai/uplift",
     toolCard: {
       purpose: "Secures the perimeter of your deep-work hours and team productivity.",
@@ -941,7 +941,7 @@ export const AGENTS: Agent[] = [
     description: "Optimizes the allocation of time, money, and energy across the stack.",
     oracleInsight: "Maximizing total system utility across the entire operational stack.",
     color: "from-lime-600 to-yellow-700",
-    icon: "🔋",
+    icon: "/agent-icons/uu.svg",
     url: "https://nexus.ai/util",
     toolCard: {
       purpose: "Optimizes the allocation of time, money, and energy across the stack.",
@@ -963,7 +963,7 @@ export const AGENTS: Agent[] = [
     description: "Injects creative 'shocks' into stagnant systems or failing offers.",
     oracleInsight: "Injecting a creative voltage spike to reanimate a stagnant offer.",
     color: "from-yellow-400 to-orange-500",
-    icon: "💫",
+    icon: "/agent-icons/v.svg",
     url: "https://nexus.ai/verve",
     toolCard: {
       purpose: "Injects creative 'shocks' into stagnant systems or failing offers.",
@@ -985,7 +985,7 @@ export const AGENTS: Agent[] = [
     description: "Predicts future trends and sets long-term sovereign vectors.",
     oracleInsight: "Projecting long-range sovereign vectors based on future-state reality.",
     color: "from-yellow-600 to-orange-700",
-    icon: "🔭",
+    icon: "/agent-icons/vv.svg",
     url: "https://nexus.ai/view",
     toolCard: {
       purpose: "Predicts future trends and sets long-term sovereign vectors.",
@@ -1007,7 +1007,7 @@ export const AGENTS: Agent[] = [
     description: "Accelerates an idea from concept to checkout in 168 hours or less.",
     oracleInsight: "Compressing six months of launch latency into a single 168-hour sprint.",
     color: "from-indigo-500 to-blue-600",
-    icon: "🚀",
+    icon: "/agent-icons/w.svg",
     url: "https://nexus.ai/warp",
     toolCard: {
       purpose: "Accelerates an idea from concept to checkout in 168 hours or less.",
@@ -1029,7 +1029,7 @@ export const AGENTS: Agent[] = [
     description: "Bends time and market cycles to execute faster than humanly possible.",
     oracleInsight: "Bending the laws of time to execute at impossible industrial velocity.",
     color: "from-orange-600 to-red-700",
-    icon: "🚄",
+    icon: "/agent-icons/ww.svg",
     url: "https://nexus.ai/warp-speed",
     toolCard: {
       purpose: "Bends time and market cycles to execute faster than humanly possible.",
@@ -1051,7 +1051,7 @@ export const AGENTS: Agent[] = [
     description: "Identifies the invisible friction points killing your funnel conversion.",
     oracleInsight: "Irradiating the funnel to expose invisible conversion friction.",
     color: "from-slate-500 to-blue-900",
-    icon: "🩻",
+    icon: "/agent-icons/x.svg",
     url: "https://nexus.ai/xray",
     toolCard: {
       purpose: "Identifies the invisible friction points killing your funnel conversion.",
@@ -1073,7 +1073,7 @@ export const AGENTS: Agent[] = [
     description: "Performs deep X-ray diagnostics to find hidden fractures in the machine.",
     oracleInsight: "Diagnosing deep structural fractures within the system architecture.",
     color: "from-red-600 to-rose-700",
-    icon: "🔦",
+    icon: "/agent-icons/xx.svg",
     url: "https://nexus.ai/xenon",
     toolCard: {
       purpose: "Performs deep X-ray diagnostics to find hidden fractures in the machine.",
@@ -1095,7 +1095,7 @@ export const AGENTS: Agent[] = [
     description: "Squeezes maximum lifetime value (LTV) through value-add upsells.",
     oracleInsight: "Extracting maximum lifetime value from every acquired unit.",
     color: "from-emerald-500 to-green-600",
-    icon: "🌾",
+    icon: "/agent-icons/y.svg",
     url: "https://nexus.ai/yield",
     toolCard: {
       purpose: "Squeezes maximum lifetime value (LTV) through value-add upsells.",
@@ -1117,7 +1117,7 @@ export const AGENTS: Agent[] = [
     description: "Squeezes every drop of profit from existing assets and dead leads.",
     oracleInsight: "Harvesting dormant profit reservoirs from inactive asset lists.",
     color: "from-rose-600 to-pink-700",
-    icon: "💰",
+    icon: "/agent-icons/yy.svg",
     url: "https://nexus.ai/yield-strat",
     toolCard: {
       purpose: "Squeezes every drop of profit from existing assets and dead leads.",
@@ -1139,7 +1139,7 @@ export const AGENTS: Agent[] = [
     description: "Anchors high-level strategy into reality-adjusted execution timelines.",
     oracleInsight: "Anchoring abstract strategy into reality-adjusted execution timelines.",
     color: "from-purple-600 to-indigo-600",
-    icon: "⚡",
+    icon: "/agent-icons/z.svg",
     url: "https://nexus.ai/zenith",
     toolCard: {
       purpose: "Constructs reality-adjusted timelines and enforces strict milestones.",
@@ -1161,7 +1161,7 @@ export const AGENTS: Agent[] = [
     description: "Architecting the final payout, transition to Chairman, and 2026 legacy.",
     oracleInsight: "Architecting the final transition from Founder to Sovereign Chairman.",
     color: "from-pink-600 to-purple-800",
-    icon: "🌌",
+    icon: "/agent-icons/zz.svg",
     url: "https://nexus.ai/zenith-legacy",
     toolCard: {
       purpose: "Architecting the final payout, transition to Chairman, and 2026 legacy.",
@@ -1183,7 +1183,7 @@ export const AGENTS: Agent[] = [
     description: "Monitors the digital sphere for brand sentiment and threat vectors.",
     oracleInsight: "Monitoring the digital sphere for hostile sentiment vectors.",
     color: "from-slate-500 to-gray-600",
-    icon: "👁️",
+    icon: "/agent-icons/wa.svg",
     toolCard: {
       purpose: "Monitors the digital sphere for brand sentiment and threat vectors.",
       useThisWhen: ["Brand sentiment is unknown", "Fearing a PR crisis"],
@@ -1204,7 +1204,7 @@ export const AGENTS: Agent[] = [
     description: "Systematizes the collection and display of high-leverage social proof.",
     oracleInsight: "Systematizing the extraction of high-leverage social proof assets.",
     color: "from-yellow-400 to-amber-500",
-    icon: "⭐",
+    icon: "/agent-icons/pr.svg",
     toolCard: {
       purpose: "Systematizes the collection and display of high-leverage social proof.",
       useThisWhen: ["Trust is low", "Conversion is suffering"],
@@ -1225,7 +1225,7 @@ export const AGENTS: Agent[] = [
     description: "Analyzes real-time market movements to identify rising tides.",
     oracleInsight: "Analyzing real-time market currents to identify rising tides.",
     color: "from-blue-400 to-cyan-500",
-    icon: "📈",
+    icon: "/agent-icons/cu.svg",
     toolCard: {
       purpose: "Analyzes real-time market movements to identify rising tides.",
       useThisWhen: ["Market feels stale", "Seeking new angles"],
@@ -1246,7 +1246,7 @@ export const AGENTS: Agent[] = [
     description: "Maps the total addressable market and identifies lucrative pockets.",
     oracleInsight: "Mapping the total addressable market for lucrative pocket identification.",
     color: "from-indigo-500 to-violet-600",
-    icon: "🗺️",
+    icon: "/agent-icons/su.svg",
     toolCard: {
       purpose: "Maps the total addressable market and identifies lucrative pockets.",
       useThisWhen: ["Entering new niche", "Scaling ad spend"],
@@ -1267,7 +1267,7 @@ export const AGENTS: Agent[] = [
     description: "Provides deep intelligence on the battlefield before tactical deployment.",
     oracleInsight: "Deploying deep reconnaissance assets before tactical movement.",
     color: "from-green-600 to-emerald-700",
-    icon: "🔭",
+    icon: "/agent-icons/re.svg",
     toolCard: {
       purpose: "Provides deep intelligence on the battlefield before tactical deployment.",
       useThisWhen: ["Launching new campaign", "Blind spots exist"],
@@ -1288,7 +1288,7 @@ export const AGENTS: Agent[] = [
     description: "Identifies the specific battles you can actually win in the search wars.",
     oracleInsight: "Identifying winnable keyword battles in the search wars.",
     color: "from-orange-500 to-red-600",
-    icon: "🏆",
+    icon: "/agent-icons/ra.svg",
     toolCard: {
       purpose: "Identifies the specific battles you can actually win in the search wars.",
       useThisWhen: ["SEO is failing", "Traffic is low quality"],
@@ -1309,7 +1309,7 @@ export const AGENTS: Agent[] = [
     description: "Scans the technical infrastructure for invisible friction and errors.",
     oracleInsight: "Scanning technical infrastructure for invisible friction points.",
     color: "from-slate-600 to-gray-700",
-    icon: "🕷️",
+    icon: "/agent-icons/cr.svg",
     toolCard: {
       purpose: "Scans the technical infrastructure for invisible friction and errors.",
       useThisWhen: ["Rankings dropped", "Site speed is slow"],
@@ -1330,7 +1330,7 @@ export const AGENTS: Agent[] = [
     description: "Optimizes on-page content to lock in relevance and authority.",
     oracleInsight: "Locking in on-page relevance for maximum authority signaling.",
     color: "from-blue-600 to-indigo-700",
-    icon: "⚓",
+    icon: "/agent-icons/an.svg",
     toolCard: {
       purpose: "Optimizes on-page content to lock in relevance and authority.",
       useThisWhen: ["Content is flat", "Rankings are stuck"],
@@ -1351,7 +1351,7 @@ export const AGENTS: Agent[] = [
     description: "Builds the external authority signals required for domain dominance.",
     oracleInsight: "Constructing external authority signals for domain dominance.",
     color: "from-cyan-500 to-blue-600",
-    icon: "📡",
+    icon: "/agent-icons/si.svg",
     toolCard: {
       purpose: "Builds the external authority signals required for domain dominance.",
       useThisWhen: ["Authority is low", "Competitors are outranking"],
@@ -1372,7 +1372,7 @@ export const AGENTS: Agent[] = [
     description: "Optimizes the product presentation for maximum desire and conversion.",
     oracleInsight: "Optimizing product presentation for maximum desire induction.",
     color: "from-purple-500 to-pink-600",
-    icon: "🛍️",
+    icon: "/agent-icons/sh.svg",
     toolCard: {
       purpose: "Optimizes the product presentation for maximum desire and conversion.",
       useThisWhen: ["Traffic bounces", "Add-to-cart is low"],
@@ -1393,7 +1393,7 @@ export const AGENTS: Agent[] = [
     description: "Recovers lost revenue from users who abandoned the transaction.",
     oracleInsight: "Recovering lost revenue from abandoned transaction events.",
     color: "from-green-500 to-emerald-600",
-    icon: "🛒",
+    icon: "/agent-icons/ca.svg",
     toolCard: {
       purpose: "Recovers lost revenue from users who abandoned the transaction.",
       useThisWhen: ["Cart abandonment is high", "Revenue is leaking"],
@@ -1414,7 +1414,7 @@ export const AGENTS: Agent[] = [
     description: "Increases average order value through strategic bumps and upsells.",
     oracleInsight: "Increasing average order value through strategic capital bumps.",
     color: "from-amber-500 to-orange-600",
-    icon: "🏦",
+    icon: "/agent-icons/va.svg",
     toolCard: {
       purpose: "Increases average order value through strategic bumps and upsells.",
       useThisWhen: ["AOV is low", "Margins are thin"],
@@ -1435,7 +1435,7 @@ export const AGENTS: Agent[] = [
     description: "Seals the leaks in the final checkout flow to maximize captured revenue.",
     oracleInsight: "Sealing the final checkout flow to maximize revenue capture.",
     color: "from-slate-700 to-black",
-    icon: "🔒",
+    icon: "/agent-icons/se.svg",
     toolCard: {
       purpose: "Seals the leaks in the final checkout flow to maximize captured revenue.",
       useThisWhen: ["Drop-off at payment", "Trust issues"],
@@ -1456,7 +1456,7 @@ export const AGENTS: Agent[] = [
     description: "Deploys psychological trust signals to eliminate buyer hesitation.",
     oracleInsight: "Deploying psychological trust signals to eliminate hesitation.",
     color: "from-blue-400 to-indigo-500",
-    icon: "🛡️",
+    icon: "/agent-icons/ba.svg",
     toolCard: {
       purpose: "Deploys psychological trust signals to eliminate buyer hesitation.",
       useThisWhen: ["Conversion is low", "Brand is new"],
