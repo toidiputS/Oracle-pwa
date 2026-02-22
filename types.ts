@@ -1,3 +1,4 @@
+
 export interface ToolCard {
   purpose: string;
   useThisWhen: string[];
@@ -8,15 +9,26 @@ export interface ToolCard {
   useCases?: string[];
 }
 
+export interface Squad {
+  id: string;
+  name: string;
+  domain: string;
+  color: string;
+}
+
 export interface Agent {
   id: string; // The tactical code (e.g., A, B, Z1)
   name: string;
   role: string;
   description: string;
+  oracleInsight?: string; // New: Punchy, conversational insight
   color: string;
   icon: string;
   url?: string;
   toolCard?: ToolCard;
+  suggestedNextNode?: string; // ID of the suggested next agent
+  suggestedPreviousNode?: string; // ID of the suggested previous agent
+  squad?: Squad;
 }
 
 export interface Message {
@@ -25,6 +37,7 @@ export interface Message {
   text: string;
   timestamp: Date;
   isTyping?: boolean;
+  isStreaming?: boolean;
   choices?: string[];
 }
 

@@ -1,990 +1,1474 @@
+
 import { Agent } from './types';
 
 export const SYSTEM_NAME = "The Oracle";
 
 export const ORACLE_NODE: Agent = {
-  id: 'ORC',
+  id: 'ORACLE',
   name: 'The Oracle',
-  role: 'Master Orchestrator',
-  description: 'The core consciousness and administrative interface of the Nexus system.',
+  role: 'System Orchestrator',
+  description: 'The core consciousness and administrative interface of the Nexus system, specializing in customized workflow generation.',
+  oracleInsight: 'My current focus: Orchestrating your strategic dominance.',
   color: 'from-blue-900 to-indigo-950',
   icon: '🔮',
+  squad: { id: "COMMAND", name: "ORACLE", domain: "itsyouonline.com", color: "Blue #1e3a8a" }
+};
+
+export const SQUADS = {
+  SQUAD_COMMAND: { id: "COMMAND", name: "ORACLE", domain: "itsyouonline.com", color: "Blue #1e3a8a" },
+  SQUAD_1: { id: "SQUAD 1", name: "LEGACY VAULT", domain: "itsai.vip", color: "Indigo #6366f1" },
+  SQUAD_2: { id: "SQUAD 2", name: "OPS IRON", domain: "itsaiagent.solutions", color: "Teal #0d9488" },
+  SQUAD_3: { id: "SQUAD 3", name: "CAPITAL FLOOR", domain: "itsai.services", color: "Crimson #dc2626" },
+  SQUAD_4: { id: "SQUAD 4", name: "GROWTH ENGINE", domain: "itsaiagents.online", color: "Royal Blue #2563eb" },
+  SQUAD_5: { id: "SQUAD 5", name: "CASH VELOCITY", domain: "itsai.chat", color: "Cyan #06b6d4" },
+  SQUAD_6: { id: "SQUAD 6", name: "TRUST SHIELD", domain: "itsai.help", color: "Emerald #059669" },
+  SQUAD_7: { id: "SQUAD 7", name: "BRAND ALIVE", domain: "itsai.life", color: "Magenta #db2777" },
+  SQUAD_8: { id: "SQUAD 8", name: "INTEL CORE", domain: "itsai.wiki", color: "Gold #ca8a04" },
+  SQUAD_9: { id: "SQUAD 9", name: "SIGNAL", domain: "itsai.blog", color: "Olive #84cc16" },
+  SQUAD_10: { id: "SQUAD 10", name: "CONVERT", domain: "itsai.store", color: "Copper #b45309" },
 };
 
 export const AGENTS: Agent[] = [
-  // --- PAIR A ---
   {
+    suggestedNextNode: "CC",
+    suggestedPreviousNode: "G",
+    squad: SQUADS.SQUAD_6,
     id: "A",
     name: "Arbiter",
     role: "Contracts",
     description: "Shreds legal ambiguity to secure maximum leverage and IP protection.",
+    oracleInsight: "Shredding legal ambiguity to secure absolute sovereign leverage.",
     color: "from-slate-600 to-slate-800",
     icon: "⚖️",
     url: "https://nexus.ai/arbiter",
     toolCard: {
       purpose: "Shreds legal ambiguity to secure maximum leverage and IP protection.",
       useThisWhen: ["Drafting new agreements", "Reviewing legal exposure", "Locking in IP"],
-      inputNeeded: "Draft contract (PDF/Word); Counter-party history.",
+      inputNeeded: "Draft contract; Counter-party history.",
       outputDelivered: ["Redlined Document", "Risk-Exposure Report"],
       doNotUseWhen: ["No legal documents exist yet"],
-      bestNextStep: "B (Retention)",
+      bestNextStep: "CC (Finance)",
       useCases: ["Redlining liability", "IP protection", "Enforcing payment triggers"]
     }
   },
   {
+    suggestedNextNode: "BB",
+    suggestedPreviousNode: "RR",
+    squad: SQUADS.SQUAD_8,
     id: "AA",
     name: "Apex",
     role: "Strategy",
     description: "Defines the highest-level strategic objectives and market dominance vectors.",
+    oracleInsight: "Architecting the North Star vector for total market supremacy.",
     color: "from-indigo-900 to-slate-900",
     icon: "🏔️",
     url: "https://nexus.ai/apex",
     toolCard: {
       purpose: "Defines the highest-level strategic objectives and market dominance vectors.",
       useThisWhen: ["Vision is blurry", "Entering new markets", "Seeking dominance"],
-      inputNeeded: "Market landscape; Resource inventory; 5-year vision.",
+      inputNeeded: "Market landscape; Resource inventory.",
       outputDelivered: ["North Star Objective", "Market Dominance Roadmap"],
       doNotUseWhen: ["Stuck in tactical fires"],
       bestNextStep: "BB (Validation)",
-      useCases: ["Service-to-Platform transition", "Niche dominance", "Executive alignment"]
+      useCases: ["Service-to-Platform transition", "Niche dominance"]
     }
   },
-  // --- PAIR B ---
   {
+    suggestedNextNode: "M",
+    suggestedPreviousNode: "LL",
+    squad: SQUADS.SQUAD_6,
     id: "B",
     name: "Bulwark",
     role: "Retention",
     description: "Guards the customer relationship to prevent churn and ensure continuity.",
+    oracleInsight: "Fortifying the perimeter to render client churn mathematically impossible.",
     color: "from-blue-600 to-indigo-700",
     icon: "🛡️",
     url: "https://nexus.ai/bulwark",
     toolCard: {
       purpose: "Guards the customer relationship to prevent churn and ensure continuity.",
-      useThisWhen: ["Churn rates are spiking", "Customer sentiment is low", "Renewals are approaching"],
+      useThisWhen: ["Churn rates are spiking", "Customer sentiment is low"],
       inputNeeded: "Usage data; Churn alerts; Client feedback.",
       outputDelivered: ["Retention Strategy", "Churn Risk Map"],
       doNotUseWhen: ["You have no active customers"],
-      bestNextStep: "Y (Upsell)",
-      useCases: ["Pre-emptive save", "Onboarding verification", "Renewal automation"]
+      bestNextStep: "M (Referrals)",
+      useCases: ["Pre-emptive save", "Onboarding verification"]
     }
   },
   {
+    suggestedNextNode: "DD",
+    suggestedPreviousNode: "AA",
+    squad: SQUADS.SQUAD_5,
     id: "BB",
     name: "Bridge",
     role: "Validation",
     description: "Validates the connection between the high-level offer and the 'bleeding neck' problem.",
+    oracleInsight: "Calibrating the offer to strike the market's bleeding neck artery.",
     color: "from-blue-800 to-indigo-900",
     icon: "🌉",
     url: "https://nexus.ai/bridge",
     toolCard: {
       purpose: "Validates the connection between the high-level offer and the 'bleeding neck' problem.",
-      useThisWhen: ["Launching new offers", "Sales are inconsistent", "Market fit unknown"],
+      useThisWhen: ["Launching new offers", "Sales are inconsistent"],
       inputNeeded: "Customer interviews; Offer draft.",
       outputDelivered: ["Validation Score", "Offer Refinement"],
       doNotUseWhen: ["Strategy (Apex) is undefined"],
       bestNextStep: "DD (Growth)",
-      useCases: ["Problem-Solution fit", "Offer stress-test", "Market resonance"]
+      useCases: ["Problem-Solution fit", "Offer stress-test"]
     }
   },
-  // --- PAIR C ---
   {
+    suggestedNextNode: "CC",
+    suggestedPreviousNode: "BB",
+    squad: SQUADS.SQUAD_3,
     id: "C",
     name: "Centurion",
     role: "Pricing",
     description: "Architects the price floor and ceiling for maximum structural profit.",
+    oracleInsight: "Enforcing a pricing architecture that mandates maximum profit extraction.",
     color: "from-amber-500 to-yellow-600",
     icon: "🏛️",
     url: "https://nexus.ai/centurion",
     toolCard: {
       purpose: "Architects the price floor and ceiling for maximum structural profit.",
-      useThisWhen: ["Margins are eroding", "Launching a new tier", "Pricing feels arbitrary"],
+      useThisWhen: ["Margins are eroding", "Launching a new tier"],
       inputNeeded: "Delivery costs; Market comps; Desired margins.",
       outputDelivered: ["Pricing Matrix", "Profit Floor Analysis"],
       doNotUseWhen: ["Costs are unknown"],
       bestNextStep: "CC (Finance)",
-      useCases: ["Tiered pricing build", "Discount thresholding", "Margin audit"]
+      useCases: ["Tiered pricing build", "Discount thresholding"]
     }
   },
   {
+    suggestedNextNode: "YY",
+    suggestedPreviousNode: "C",
+    squad: SQUADS.SQUAD_3,
     id: "CC",
     name: "Core",
     role: "Finance",
     description: "Audits the financial engine to ensure scalability and structural profit.",
+    oracleInsight: "Auditing the economic engine for infinite structural scalability.",
     color: "from-blue-600 to-blue-800",
     icon: "💠",
     url: "https://nexus.ai/core",
     toolCard: {
       purpose: "Audits the financial engine to ensure scalability and structural profit.",
-      useThisWhen: ["Scaling revenue", "Profit is low", "Financial planning"],
+      useThisWhen: ["Scaling revenue", "Profit is low"],
       inputNeeded: "P&L; Unit economics.",
       outputDelivered: ["Unit Economic Audit", "Profit Optimization Model"],
       doNotUseWhen: ["No revenue exists"],
       bestNextStep: "YY (Profit)",
-      useCases: ["SaaS pricing audit", "Enterprise CAC calc", "Profit-leak check"]
+      useCases: ["SaaS pricing audit", "Enterprise CAC calc"]
     }
   },
-  // --- PAIR D ---
   {
+    suggestedNextNode: "E",
+    suggestedPreviousNode: "Q",
+    squad: SQUADS.SQUAD_4,
     id: "D",
     name: "Dynamo",
     role: "Hooks",
     description: "Generates high-velocity, scroll-stopping attention in the first 3 seconds.",
+    oracleInsight: "Igniting high-velocity attention spikes to arrest the scroll instantly.",
     color: "from-orange-500 to-red-500",
     icon: "🧨",
     url: "https://nexus.ai/dynamo",
     toolCard: {
       purpose: "Generates high-velocity, scroll-stopping attention in the first 3 seconds.",
-      useThisWhen: ["Ads are ignored", "CTR is low", "Content needs energy"],
+      useThisWhen: ["Ads are ignored", "CTR is low"],
       inputNeeded: "Offer core; Audience pain points.",
       outputDelivered: ["10 High-Heat Hooks", "Creative Direction"],
       doNotUseWhen: ["The offer core is undefined"],
       bestNextStep: "E (Social)",
-      useCases: ["VSL Intro", "Ad hook", "Social thread-starter"]
+      useCases: ["VSL Intro", "Ad hook"]
     }
   },
   {
+    suggestedNextNode: "LL",
+    suggestedPreviousNode: "BB",
+    squad: SQUADS.SQUAD_4,
     id: "DD",
     name: "Drive",
     role: "Growth",
     description: "Generates high-intent traffic mechanisms and acquisition logic.",
+    oracleInsight: "Engineering the high-intent traffic systems for massive acquisition volume.",
     color: "from-cyan-600 to-teal-700",
     icon: "🏎️",
     url: "https://nexus.ai/drive",
     toolCard: {
       purpose: "Generates high-intent traffic mechanisms and acquisition logic.",
-      useThisWhen: ["Need more leads", "Traffic is flat", "Scaling acquisition"],
+      useThisWhen: ["Need more leads", "Traffic is flat"],
       inputNeeded: "Ad budget; Target traffic.",
       outputDelivered: ["Acquisition Roadmap", "Traffic Model"],
       doNotUseWhen: ["Funnel is leaky"],
       bestNextStep: "LL (Closing)",
-      useCases: ["Paid acquisition plan", "Organic growth engine", "Virality design"]
+      useCases: ["Paid acquisition plan", "Organic growth engine"]
     }
   },
-  // --- PAIR E ---
   {
+    suggestedNextNode: "EE",
+    suggestedPreviousNode: "D",
+    squad: SQUADS.SQUAD_7,
     id: "E",
     name: "Echo",
     role: "Social",
-    description: "Creates brand omnipresence by distributing messages across all frequencies.",
+    description: "Creates brand omnipresence by distributing messages across all platforms.",
+    oracleInsight: "Broadcasting your signal across all frequencies for total omni-presence.",
     color: "from-cyan-400 to-blue-500",
     icon: "📣",
     url: "https://nexus.ai/echo",
     toolCard: {
       purpose: "Creates brand omnipresence by distributing messages across all frequencies.",
-      useThisWhen: ["Reach is limited", "Message is inconsistent", "Scaling content output"],
+      useThisWhen: ["Reach is limited", "Message is inconsistent"],
       inputNeeded: "Primary asset; Target platforms.",
       outputDelivered: ["Distribution Map", "Engagement Protocol"],
       doNotUseWhen: ["No content assets exist"],
-      bestNextStep: "L (Intent)",
-      useCases: ["Multi-channel scheduling", "Comment engagement", "Brand voice sync"]
+      bestNextStep: "EE (Amplification)",
+      useCases: ["Multi-channel scheduling", "Brand voice sync"]
     }
   },
   {
+    suggestedNextNode: "R",
+    suggestedPreviousNode: "E",
+    squad: SQUADS.SQUAD_4,
     id: "EE",
     name: "Expand",
     role: "Amplification",
     description: "Maximizes brand amplification through multiplication and high-tier PR.",
+    oracleInsight: "Multiplying authority vectors through high-tier industrial amplification.",
     color: "from-sky-500 to-cyan-600",
     icon: "📡",
-    url: "https://nexus.ai/echo-strat",
+    url: "https://nexus.ai/expand",
     toolCard: {
       purpose: "Maximizes brand amplification through multiplication and high-tier PR.",
-      useThisWhen: ["Brand is unknown", "Need authority", "Scaling message"],
+      useThisWhen: ["Brand is unknown", "Need authority"],
       inputNeeded: "Brand assets; Media list.",
       outputDelivered: ["Amplification Map", "Reach Forecast"],
       doNotUseWhen: ["Message is not defined"],
-      bestNextStep: "HH (Community)",
-      useCases: ["PR campaign design", "Influencer syndication", "Brand halo build"]
+      bestNextStep: "R (SEO)",
+      useCases: ["PR campaign design", "Influencer syndication"]
     }
   },
-  // --- PAIR F ---
   {
+    suggestedNextNode: "J",
+    suggestedPreviousNode: "DD",
+    squad: SQUADS.SQUAD_4,
     id: "F",
     name: "Frontier",
     role: "Outreach",
     description: "Bridges the gap from 'cold' to 'sold' through direct engagement.",
+    oracleInsight: "Piercing cold markets to extract high-ticket capital.",
     color: "from-green-600 to-emerald-700",
     icon: "⛺",
     url: "https://nexus.ai/frontier",
     toolCard: {
       purpose: "Bridges the gap from 'cold' to 'sold' through direct engagement.",
-      useThisWhen: ["Inbound leads are low", "Breaking into new markets", "Seeking direct contact"],
+      useThisWhen: ["Inbound leads are low", "Breaking into new markets"],
       inputNeeded: "Lead list; Offer validation.",
       outputDelivered: ["Outreach Scripts", "Lead Response Map"],
       doNotUseWhen: ["Offer is not validated"],
       bestNextStep: "J (DMs)",
-      useCases: ["Cold email sequence", "LinkedIn outreach", "Event follow-up"]
+      useCases: ["Cold email sequence", "LinkedIn outreach"]
     }
   },
   {
+    suggestedNextNode: "VV",
+    suggestedPreviousNode: "CU",
+    squad: SQUADS.SQUAD_3,
     id: "FF",
     name: "Flux",
     role: "Agility",
     description: "Engineers rapid pivots to exploit market shifts and economic changes.",
+    oracleInsight: "Engineering rapid tactical pivots to exploit market chaos.",
     color: "from-teal-500 to-emerald-600",
     icon: "🌊",
     url: "https://nexus.ai/flux",
     toolCard: {
       purpose: "Engineers rapid pivots to exploit market shifts and economic changes.",
-      useThisWhen: ["Market is changing", "Competitors disrupted", "Crisis mode"],
+      useThisWhen: ["Market is changing", "Competitors disrupted"],
       inputNeeded: "Market news; Internal stats.",
       outputDelivered: ["Pivot Protocol", "Agility Scorecard"],
       doNotUseWhen: ["Stable growth phase"],
       bestNextStep: "VV (Forecasting)",
-      useCases: ["Market-shift response", "Crisis pivot", "Competitive adjustment"]
+      useCases: ["Market-shift response", "Crisis pivot"]
     }
   },
-  // --- PAIR G ---
   {
+    suggestedNextNode: "A",
+    suggestedPreviousNode: "SS",
+    squad: SQUADS.SQUAD_6,
     id: "G",
     name: "Garrison",
     role: "Legal",
     description: "Scrubs all assets for compliance, policy, and institutional risk.",
+    oracleInsight: "Sanitizing all asset classes for institutional-grade compliance.",
     color: "from-gray-600 to-gray-800",
     icon: "🏯",
     url: "https://nexus.ai/garrison",
     toolCard: {
       purpose: "Scrubs all assets for compliance, policy, and institutional risk.",
-      useThisWhen: ["Launching regulated products", "Publishing sensitive copy", "Audit preparation"],
+      useThisWhen: ["Launching regulated products", "Publishing sensitive copy"],
       inputNeeded: "Marketing copy; Landing pages.",
       outputDelivered: ["Compliance Audit", "Safe-Copy Revision"],
       doNotUseWhen: ["Drafts are too early stage"],
       bestNextStep: "A (Contracts)",
-      useCases: ["Ad policy check", "GDPR/Terms audit", "Disclaimer generation"]
+      useCases: ["Ad policy check", "GDPR/Terms audit"]
     }
   },
   {
+    suggestedNextNode: "SS",
+    suggestedPreviousNode: "N",
+    squad: SQUADS.SQUAD_2,
     id: "GG",
     name: "Grid",
     role: "Systems",
     description: "Builds the scalable infrastructure and deep architectural SOPs.",
+    oracleInsight: "Constructing the industrial-grade lattice for infinite operational scale.",
     color: "from-emerald-600 to-green-700",
     icon: "🏁",
     url: "https://nexus.ai/grid",
     toolCard: {
       purpose: "Builds the scalable infrastructure and deep architectural SOPs.",
-      useThisWhen: ["Scaling operations", "Chaos is increasing", "Team growing"],
+      useThisWhen: ["Scaling operations", "Chaos is increasing"],
       inputNeeded: "Current workflows; Resource list.",
       outputDelivered: ["Systems Map", "Infrastructure SOP"],
       doNotUseWhen: ["Pre-product market fit"],
-      bestNextStep: "NN (Automation)",
-      useCases: ["Scaling infrastructure", "Departmental sync", "Backend build"]
+      bestNextStep: "SS (Culture)",
+      useCases: ["Scaling infrastructure", "Backend build"]
     }
   },
-  // --- PAIR H ---
   {
+    suggestedNextNode: "V",
+    suggestedPreviousNode: "WA",
+    squad: SQUADS.SQUAD_6,
     id: "H",
     name: "Hush",
     role: "PR",
     description: "Neutralizes friction and manages reputation in high-stress environments.",
+    oracleInsight: "Silencing reputational friction before it breaches the containment field.",
     color: "from-slate-700 to-black",
     icon: "🤫",
     url: "https://nexus.ai/hush",
     toolCard: {
       purpose: "Neutralizes friction and manages reputation in high-stress environments.",
-      useThisWhen: ["Negative press hits", "Crisis emerging", "Reputation management needed"],
+      useThisWhen: ["Negative press hits", "Crisis emerging"],
       inputNeeded: "Negative signal; Public record.",
       outputDelivered: ["Response Script", "Damage Control Plan"],
       doNotUseWhen: ["Environment is stable"],
       bestNextStep: "V (Pivot)",
-      useCases: ["Crisis management", "Brand protection", "Dark PR neutralization"]
+      useCases: ["Crisis management", "Brand protection"]
     }
   },
   {
+    suggestedNextNode: "OO",
+    suggestedPreviousNode: "M",
+    squad: SQUADS.SQUAD_7,
     id: "HH",
     name: "Hive",
     role: "Tribal",
     description: "Engineers tribal loyalty, audience engagement, and community logic.",
+    oracleInsight: "Engineering deep tribal loyalty to weaponize your audience.",
     color: "from-green-500 to-lime-600",
     icon: "🐝",
     url: "https://nexus.ai/hive",
     toolCard: {
       purpose: "Engineers tribal loyalty, audience engagement, and community logic.",
-      useThisWhen: ["Building a movement", "Engagement is key", "Loyalty needed"],
+      useThisWhen: ["Building a movement", "Engagement is key"],
       inputNeeded: "User base; Engagement metrics.",
       outputDelivered: ["Tribal Strategy", "Engagement Map"],
       doNotUseWhen: ["Transactional model only"],
       bestNextStep: "OO (Loops)",
-      useCases: ["Community launch", "Engagement loop", "Viral challenge"]
+      useCases: ["Community launch", "Viral challenge"]
     }
   },
-  // --- PAIR I ---
   {
+    suggestedNextNode: "X",
+    suggestedPreviousNode: "RE",
+    squad: SQUADS.SQUAD_2,
     id: "I",
     name: "Infra",
     role: "Tech",
     description: "Builds the logic bridges and technical stack required for scale.",
+    oracleInsight: "Fusing the technical stack into a singular self-driving organism.",
     color: "from-indigo-500 to-purple-600",
     icon: "🏗️",
     url: "https://nexus.ai/infra",
     toolCard: {
       purpose: "Builds the logic bridges and technical stack required for scale.",
-      useThisWhen: ["Tools are disconnected", "Scaling breaks systems", "Manual data entry is high"],
+      useThisWhen: ["Tools are disconnected", "Scaling breaks systems"],
       inputNeeded: "Tool list; API documentation.",
       outputDelivered: ["Stack Map", "Technical Specs"],
       doNotUseWhen: ["Process is not defined"],
-      bestNextStep: "NN (Automation)",
-      useCases: ["Stack integration", "Database mapping", "Security hardening"]
+      bestNextStep: "X (Funnels)",
+      useCases: ["Stack integration", "Database mapping"]
     }
   },
   {
+    suggestedNextNode: "RR",
+    suggestedPreviousNode: "RE",
+    squad: SQUADS.SQUAD_8,
     id: "II",
     name: "Intel",
     role: "Research",
     description: "Mines competitive data for hidden insights and 'Blue Ocean' advantages.",
+    oracleInsight: "Extracting deep-web competitor intelligence for asymmetric advantage.",
     color: "from-lime-600 to-yellow-600",
     icon: "🕵️",
     url: "https://nexus.ai/intel",
     toolCard: {
       purpose: "Mines competitive data for hidden insights and 'Blue Ocean' advantages.",
-      useThisWhen: ["Strategy is blind", "Competitors are winning", "Seeking edge"],
+      useThisWhen: ["Strategy is blind", "Competitors are winning"],
       inputNeeded: "Rival URLs; Industry data.",
       outputDelivered: ["Intel Report", "Competitive Edge Map"],
       doNotUseWhen: ["Overwhelmed with data"],
       bestNextStep: "RR (Disruption)",
-      useCases: ["Funnel autopsy", "Gap analysis", "Shadow intel mining"]
+      useCases: ["Funnel autopsy", "Gap analysis"]
     }
   },
-  // --- PAIR J ---
   {
+    suggestedNextNode: "LL",
+    suggestedPreviousNode: "F",
+    squad: SQUADS.SQUAD_5,
     id: "J",
     name: "Juno",
     role: "DMs",
     description: "Snipe appointments through 1-on-1 direct message conversations.",
+    oracleInsight: "Sniping high-value targets directly from the inbox with surgical precision.",
     color: "from-pink-500 to-rose-600",
     icon: "🏹",
     url: "https://nexus.ai/juno",
     toolCard: {
       purpose: "Snipe appointments through 1-on-1 direct message conversations.",
-      useThisWhen: ["Leads are in inbox", "High-ticket sales", "Conversational conversion"],
+      useThisWhen: ["Leads are in inbox", "High-ticket sales"],
       inputNeeded: "Inbox access; Appointment calendar.",
       outputDelivered: ["DM Script Set", "Booking Confirmation"],
       doNotUseWhen: ["Traffic is zero"],
-      bestNextStep: "K (VSLs)",
-      useCases: ["Lead qualification", "Objection handling", "Link drop"]
+      bestNextStep: "LL (Closing)",
+      useCases: ["Lead qualification", "Objection handling"]
     }
   },
   {
+    suggestedNextNode: "LL",
+    suggestedPreviousNode: "V",
+    squad: SQUADS.SQUAD_5,
     id: "JJ",
     name: "Jolt",
     role: "Sales",
     description: "Shocks stagnant leads or inactive systems into immediate cash-flow action.",
+    oracleInsight: "Administering a high-voltage shock to resurrect dead capital.",
     color: "from-yellow-500 to-orange-600",
     icon: "🔋",
     url: "https://nexus.ai/jolt",
     toolCard: {
       purpose: "Shocks stagnant leads or inactive systems into immediate cash-flow action.",
-      useThisWhen: ["Cash flow urgency", "Leads are stalling", "Pipeline frozen"],
+      useThisWhen: ["Cash flow urgency", "Leads are stalling"],
       inputNeeded: "Dead list; Cash need.",
       outputDelivered: ["Jolt Campaign", "Cash Spike Model"],
       doNotUseWhen: ["Pipeline is full and moving"],
       bestNextStep: "LL (Closing)",
-      useCases: ["Flash sale shock", "Deadline pressure", "Contradictory subject line"]
+      useCases: ["Flash sale shock", "Deadline pressure"]
     }
   },
-  // --- PAIR K ---
   {
+    suggestedNextNode: "DD",
+    suggestedPreviousNode: "Q",
+    squad: SQUADS.SQUAD_5,
     id: "K",
     name: "Kinetix",
     role: "VSLs",
     description: "Scripts high-intensity Video Sales Letters that convert at scale.",
+    oracleInsight: "Scripting the visual neural pathways for automated conversion at scale.",
     color: "from-red-600 to-orange-600",
     icon: "🎥",
     url: "https://nexus.ai/kinetix",
     toolCard: {
       purpose: "Scripts high-intensity Video Sales Letters that convert at scale.",
-      useThisWhen: ["Conversions are low", "Explaining complex offers", "Scaling ads"],
+      useThisWhen: ["Conversions are low", "Explaining complex offers"],
       inputNeeded: "Product specs; Testimonials.",
       outputDelivered: ["Full Script", "Storyboard"],
       doNotUseWhen: ["Offer is weak"],
-      bestNextStep: "L (Intent)",
-      useCases: ["Long-form VSL", "60-second 'Short' VSL", "Demo video"]
+      bestNextStep: "DD (Growth)",
+      useCases: ["Long-form VSL", "60-second 'Short' VSL"]
     }
   },
   {
+    suggestedNextNode: "DD",
+    suggestedPreviousNode: "BB",
+    squad: SQUADS.SQUAD_5,
     id: "KK",
     name: "Knot",
     role: "Scarcity",
     description: "Uses gates, limits, and waitlists to increase perceived value and demand.",
+    oracleInsight: "Constricting supply with surgical scarcity gates to force immediate demand.",
     color: "from-orange-600 to-red-600",
     icon: "🪢",
     url: "https://nexus.ai/knot",
     toolCard: {
       purpose: "Uses gates, limits, and waitlists to increase perceived value and demand.",
-      useThisWhen: ["Demand is high", "Exclusivity needed", "Launching new tier"],
+      useThisWhen: ["Demand is high", "Exclusivity needed"],
       inputNeeded: "Available slots; Current demand.",
       outputDelivered: ["Scarcity Protocol", "Value Gate Plan"],
       doNotUseWhen: ["Demand is low"],
       bestNextStep: "DD (Growth)",
-      useCases: ["Waitlist strategy", "Application-only logic", "Countdown build"]
+      useCases: ["Waitlist strategy", "Application-only logic"]
     }
   },
-  // --- PAIR L ---
   {
+    suggestedNextNode: "J",
+    suggestedPreviousNode: "R",
+    squad: SQUADS.SQUAD_5,
     id: "L",
     name: "Locus",
     role: "Intent",
     description: "Tracks 'ready-to-buy' behavior patterns and identifying hot leads.",
+    oracleInsight: "Triangulating the exact digital coordinates of high-intent buyers.",
     color: "from-blue-500 to-cyan-500",
     icon: "🎯",
     url: "https://nexus.ai/locus",
     toolCard: {
       purpose: "Tracks 'ready-to-buy' behavior patterns and identifying hot leads.",
-      useThisWhen: ["Leads are cold", "Retargeting is generic", "Identifying buyers"],
+      useThisWhen: ["Leads are cold", "Retargeting is generic"],
       inputNeeded: "Pixel data; Website heatmaps.",
       outputDelivered: ["Lead Intent Score", "Retargeting Map"],
       doNotUseWhen: ["No tracking data available"],
-      bestNextStep: "F (Outreach)",
-      useCases: ["Behavior scoring", "Retargeting logic", "Intent-based routing"]
+      bestNextStep: "J (DMs)",
+      useCases: ["Behavior scoring", "Retargeting logic"]
     }
   },
   {
+    suggestedNextNode: "CC",
+    suggestedPreviousNode: "DD",
+    squad: SQUADS.SQUAD_5,
     id: "LL",
     name: "Link",
     role: "Closing",
     description: "Converts interest into high-ticket transactions with zero friction.",
+    oracleInsight: "Fusing high-intent signal into high-ticket transaction reality.",
     color: "from-red-600 to-rose-700",
     icon: "🔗",
     url: "https://nexus.ai/link",
     toolCard: {
       purpose: "Converts interest into high-ticket transactions with zero friction.",
-      useThisWhen: ["High leads, low sales", "Closing rate is poor", "Friction at checkout"],
+      useThisWhen: ["High leads, low sales", "Closing rate is poor"],
       inputNeeded: "Qualified lead; Closing script.",
       outputDelivered: ["Closing Protocol", "Conversion Audit"],
       doNotUseWhen: ["No qualified leads"],
       bestNextStep: "CC (Finance)",
-      useCases: ["Closing call script", "One-click checkout", "Objection nuke"]
+      useCases: ["Closing call script", "One-click checkout"]
     }
   },
-  // --- PAIR M ---
   {
+    suggestedNextNode: "HH",
+    suggestedPreviousNode: "B",
+    squad: SQUADS.SQUAD_4,
     id: "M",
     name: "Midas",
     role: "Referrals",
     description: "Turns client wins into structural, automated referral events.",
+    oracleInsight: "Transmuting client success into a perpetual viral growth loop.",
     color: "from-yellow-400 to-amber-500",
     icon: "🥇",
     url: "https://nexus.ai/midas",
     toolCard: {
       purpose: "Turns client wins into structural, automated referral events.",
-      useThisWhen: ["Clients are happy but silent", "Growth is purely paid", "Seeking viral loops"],
+      useThisWhen: ["Clients are happy but silent", "Seeking viral loops"],
       inputNeeded: "Success story; Client list.",
       outputDelivered: ["Referral SOP", "Affiliate Link Map"],
       doNotUseWhen: ["Product quality is low"],
-      bestNextStep: "Y (Upsell)",
-      useCases: ["Referral loop build", "Reward system", "Affiliate tracking"]
+      bestNextStep: "HH (Tribal)",
+      useCases: ["Referral loop build", "Reward system"]
     }
   },
   {
+    suggestedNextNode: "LL",
+    suggestedPreviousNode: "Q",
+    squad: SQUADS.SQUAD_5,
     id: "MM",
     name: "Mind",
     role: "Psychology",
     description: "Leverages behavioral economics and buyer psychology to influence choice.",
+    oracleInsight: "Decoding the buyer's neural map to bypass all psychological resistance.",
     color: "from-rose-600 to-pink-700",
     icon: "🧠",
     url: "https://nexus.ai/mind",
     toolCard: {
       purpose: "Leverages behavioral economics and buyer psychology to influence choice.",
-      useThisWhen: ["Conversion logic fails", "Persuasion needed", "Refining offers"],
+      useThisWhen: ["Conversion logic fails", "Persuasion needed"],
       inputNeeded: "Persona profile; Current copy.",
       outputDelivered: ["Psychological Profile", "Influence Strategy"],
       doNotUseWhen: ["Product is utility only"],
       bestNextStep: "LL (Closing)",
-      useCases: ["Status-vs-Savings test", "Authority build", "Reciprocity loop"]
+      useCases: ["Status-vs-Savings test", "Reciprocity loop"]
     }
   },
-  // --- PAIR N ---
   {
+    suggestedNextNode: "GG",
+    suggestedPreviousNode: "U",
+    squad: SQUADS.SQUAD_2,
     id: "N",
     name: "Net",
     role: "SOPs",
     description: "Turns messy manual tasks into clean, industrial Standard Operating Procedures.",
+    oracleInsight: "Crystallizing operational chaos into rigid industrial-grade protocols.",
     color: "from-slate-500 to-gray-600",
     icon: "🔗",
     url: "https://nexus.ai/net",
     toolCard: {
       purpose: "Turns messy manual tasks into clean, industrial Standard Operating Procedures.",
-      useThisWhen: ["Team is confused", "Quality is inconsistent", "Delegation fails"],
+      useThisWhen: ["Team is confused", "Quality is inconsistent"],
       inputNeeded: "Task recording; Desired outcome.",
       outputDelivered: ["Step-by-Step SOP", "Operational Map"],
       doNotUseWhen: ["Task is a one-off event"],
       bestNextStep: "GG (Systems)",
-      useCases: ["Onboarding SOP", "Hiring guide", "Fulfillment checklist"]
+      useCases: ["Onboarding SOP", "Fulfillment checklist"]
     }
   },
   {
+    suggestedNextNode: "QQ",
+    suggestedPreviousNode: "I",
+    squad: SQUADS.SQUAD_2,
     id: "NN",
     name: "Node",
     role: "Automation",
     description: "Connects disparate tools into a single self-driving 'Sovereign Machine'.",
+    oracleInsight: "Weaving the automated nervous system of your sovereign machine.",
     color: "from-purple-600 to-indigo-700",
     icon: "🕸️",
     url: "https://nexus.ai/node",
     toolCard: {
       purpose: "Connects disparate tools into a single self-driving 'Sovereign Machine'.",
-      useThisWhen: ["Manual tasks overwhelming", "Systems disconnected", "Scaling up"],
+      useThisWhen: ["Manual tasks overwhelming", "Systems disconnected"],
       inputNeeded: "App list; API keys.",
       outputDelivered: ["Automation Script", "Data Flow Map"],
       doNotUseWhen: ["Process is undefined"],
-      bestNextStep: "GG (Systems)",
-      useCases: ["Lead-to-Sale automation", "CRM sync", "Automated reporting"]
+      bestNextStep: "QQ (Metrics)",
+      useCases: ["Lead-to-Sale automation", "CRM sync"]
     }
   },
-  // --- PAIR O ---
   {
+    suggestedNextNode: "ZZ",
+    suggestedPreviousNode: "YY",
+    squad: SQUADS.SQUAD_1,
     id: "O",
     name: "Omega",
     role: "Exit",
     description: "Audits the business for 'Built-to-Sell' scores and exit readiness.",
+    oracleInsight: "Calculating the precise coordinates for your final sovereign exit event.",
     color: "from-violet-600 to-purple-800",
     icon: "Ω",
     url: "https://nexus.ai/omega",
     toolCard: {
       purpose: "Audits the business for 'Built-to-Sell' scores and exit readiness.",
-      useThisWhen: ["Preparing to sell", "Valuation is unclear", "Checking business health"],
+      useThisWhen: ["Preparing to sell", "Valuation is unclear"],
       inputNeeded: "3-year P&L; Operational manuals.",
       outputDelivered: ["Exit Scorecard", "Sellability Report"],
       doNotUseWhen: ["Business is in infancy"],
       bestNextStep: "ZZ (Legacy)",
-      useCases: ["Multiplier audit", "Liability cleanup", "Broker prep"]
+      useCases: ["Multiplier audit", "Broker prep"]
     }
   },
   {
+    suggestedNextNode: "YY",
+    suggestedPreviousNode: "HH",
+    squad: SQUADS.SQUAD_7,
     id: "OO",
     name: "Orbit",
     role: "Loops",
     description: "Designs retention loops that keep customers within the ecosystem forever.",
+    oracleInsight: "Designing inescapable gravitational loops for infinite lifetime value.",
     color: "from-indigo-600 to-blue-700",
     icon: "🪐",
     url: "https://nexus.ai/orbit",
     toolCard: {
       purpose: "Designs retention loops that keep customers within the ecosystem forever.",
-      useThisWhen: ["LTV is limited", "Churn is an issue", "Building ecosystem"],
+      useThisWhen: ["LTV is limited", "Churn is an issue"],
       inputNeeded: "Renewal rate; Product map.",
       outputDelivered: ["Orbit Strategy", "LTV Projection"],
       doNotUseWhen: ["One-time purchase model"],
-      bestNextStep: "Y (Profit)",
-      useCases: ["Retention loop build", "Habit-forming UX", "Echo-loop design"]
+      bestNextStep: "YY (Profit)",
+      useCases: ["Retention loop build", "Habit-forming UX"]
     }
   },
-  // --- PAIR P ---
   {
+    suggestedNextNode: "E",
+    suggestedPreviousNode: "K",
+    squad: SQUADS.SQUAD_7,
     id: "P",
     name: "Pulse",
     role: "Clips",
     description: "Shreds long-form video content into 50+ high-engagement micro-assets.",
+    oracleInsight: "Fragmenting core assets into a swarm of high-velocity micro-content.",
     color: "from-pink-500 to-red-500",
     icon: "💓",
     url: "https://nexus.ai/pulse",
     toolCard: {
       purpose: "Shreds long-form video content into 50+ high-engagement micro-assets.",
-      useThisWhen: ["Long content exists", "Social feed is empty", "Maximizing content ROI"],
+      useThisWhen: ["Long content exists", "Maximizing content ROI"],
       inputNeeded: "Raw video file; Brand guidelines.",
       outputDelivered: ["Asset Library", "Caption Set"],
       doNotUseWhen: ["No long-form source material"],
       bestNextStep: "E (Social)",
-      useCases: ["TikTok/Reels edit", "Quote card gen", "Newsletter snippet"]
+      useCases: ["TikTok/Reels edit", "Newsletter snippet"]
     }
   },
   {
+    suggestedNextNode: "BB",
+    suggestedPreviousNode: "SH",
+    squad: SQUADS.SQUAD_3,
     id: "PP",
     name: "Prime",
     role: "Quality",
     description: "Refines the core product/service to a world-class, undisputed standard.",
+    oracleInsight: "Refining the core asset into an undisputed global standard of excellence.",
     color: "from-blue-600 to-cyan-700",
     icon: "💎",
     url: "https://nexus.ai/prime",
     toolCard: {
       purpose: "Refines the core product/service to a world-class, undisputed standard.",
-      useThisWhen: ["Competition is high", "Reviews are mixed", "Premium positioning"],
+      useThisWhen: ["Competition is high", "Premium positioning"],
       inputNeeded: "Product reviews; Feature list.",
       outputDelivered: ["Product Audit", "Quality Roadmap"],
       doNotUseWhen: ["MVP phase"],
       bestNextStep: "BB (Validation)",
-      useCases: ["UI/UX refinement", "Fulfillment speed", "Unboxing experience"]
+      useCases: ["UI/UX refinement", "Fulfillment speed"]
     }
   },
-  // --- PAIR Q ---
   {
+    suggestedNextNode: "D",
+    suggestedPreviousNode: "S",
+    squad: SQUADS.SQUAD_5,
     id: "Q",
     name: "Quark",
     role: "Copy",
     description: "Logic-tests every headline and sentence for maximum conversion.",
+    oracleInsight: "Logic-testing every syllable for absolute conversion efficiency.",
     color: "from-teal-400 to-teal-600",
     icon: "✒️",
     url: "https://nexus.ai/quark",
     toolCard: {
       purpose: "Logic-tests every headline and sentence for maximum conversion.",
-      useThisWhen: ["Copy isn't converting", "Messaging is fuzzy", "A/B testing"],
+      useThisWhen: ["Copy isn't converting", "A/B testing"],
       inputNeeded: "Draft copy; Target persona.",
       outputDelivered: ["Optimized Copy", "Logic Score"],
       doNotUseWhen: ["Offer is undefined"],
       bestNextStep: "D (Hooks)",
-      useCases: ["Sales page edit", "A/B headline test", "Micro-copy polish"]
+      useCases: ["Sales page edit", "A/B headline test"]
     }
   },
   {
+    suggestedNextNode: "XX",
+    suggestedPreviousNode: "NN",
+    squad: SQUADS.SQUAD_1,
     id: "QQ",
     name: "Quota",
     role: "Metrics",
     description: "Tracks, measures, and visualizes success against hard industrial targets.",
+    oracleInsight: "Visualizing the hard industrial targets required for sovereign scale.",
     color: "from-cyan-600 to-teal-700",
     icon: "📊",
     url: "https://nexus.ai/quota",
     toolCard: {
       purpose: "Tracks, measures, and visualizes success against hard industrial targets.",
-      useThisWhen: ["Blind to performance", "Accountability needed", "Data driven"],
+      useThisWhen: ["Blind to performance", "Accountability needed"],
       inputNeeded: "KPI list; Goal numbers.",
       outputDelivered: ["Live Metrics Dashboard", "Quota Report"],
       doNotUseWhen: ["No data streams"],
       bestNextStep: "XX (Diagnostics)",
-      useCases: ["Dashboard build", "Weekly target audit", "Underperformance alert"]
+      useCases: ["Dashboard build", "Weekly target audit"]
     }
   },
-  // --- PAIR R ---
   {
+    suggestedNextNode: "L",
+    suggestedPreviousNode: "EE",
+    squad: SQUADS.SQUAD_9,
     id: "R",
     name: "Root",
     role: "SEO",
     description: "Dominates high-intent search terms to capture organic traffic.",
+    oracleInsight: "Seizing the digital real estate for permanent organic dominance.",
     color: "from-green-500 to-lime-600",
     icon: "🌳",
     url: "https://nexus.ai/root",
     toolCard: {
       purpose: "Dominates high-intent search terms to capture organic traffic.",
-      useThisWhen: ["Paid ads are expensive", "Seeking long-term traffic", "Authority building"],
+      useThisWhen: ["Paid ads are expensive", "Seeking long-term traffic"],
       inputNeeded: "Keyword list; Competitor URLs.",
       outputDelivered: ["SEO Roadmap", "Keyword Hierarchy"],
       doNotUseWhen: ["Need results today"],
       bestNextStep: "L (Intent)",
-      useCases: ["On-page audit", "Backlink strategy", "Content silo build"]
+      useCases: ["On-page audit", "Content silo build"]
     }
   },
   {
+    suggestedNextNode: "AA",
+    suggestedPreviousNode: "II",
+    squad: SQUADS.SQUAD_4,
     id: "RR",
     name: "Rift",
     role: "Disruption",
     description: "Identifies and exploits major gaps in competitor armor or market standard.",
+    oracleInsight: "Exploiting structural gaps in the market for massive asymmetric upside.",
     color: "from-teal-600 to-emerald-700",
     icon: "🌋",
     url: "https://nexus.ai/rift",
     toolCard: {
       purpose: "Identifies and exploits major gaps in competitor armor or market standard.",
-      useThisWhen: ["Market is saturated", "Need new angle", "Breaking through"],
+      useThisWhen: ["Market is saturated", "Need new angle"],
       inputNeeded: "Market standard; Competitor spend.",
       outputDelivered: ["Disruption Strategy", "Rift Analysis"],
       doNotUseWhen: ["Leading the market"],
       bestNextStep: "AA (Strategy)",
-      useCases: ["Business model rift", "Pricing disruption", "Positioning twist"]
+      useCases: ["Business model rift", "Positioning twist"]
     }
   },
-  // --- PAIR S ---
   {
+    suggestedNextNode: "Q",
+    suggestedPreviousNode: "AN",
+    squad: SQUADS.SQUAD_7,
     id: "S",
     name: "Scroll",
     role: "Identity",
     description: "Ingests the Brand Bible to ensure the AI sounds exactly like you.",
+    oracleInsight: "Ingesting the Brand Bible to clone your unique resonance frequency.",
     color: "from-fuchsia-500 to-purple-600",
     icon: "📜",
     url: "https://nexus.ai/scroll",
     toolCard: {
       purpose: "Ingests the Brand Bible to ensure the AI sounds exactly like you.",
-      useThisWhen: ["Voice is inconsistent", "Delegating content", "Rebranding"],
+      useThisWhen: ["Voice is inconsistent", "Delegating content"],
       inputNeeded: "Voice samples; Writing style.",
       outputDelivered: ["Brand Voice Map", "Persona File"],
       doNotUseWhen: ["Brand personality is undefined"],
-      bestNextStep: "P (Clips)",
-      useCases: ["Tone-of-voice sync", "Persona hardening", "Style guide gen"]
+      bestNextStep: "Q (Copy)",
+      useCases: ["Tone-of-voice sync", "Style guide gen"]
     }
   },
   {
+    suggestedNextNode: "GG",
+    suggestedPreviousNode: "GG",
+    squad: SQUADS.SQUAD_2,
     id: "SS",
     name: "Sync",
     role: "Culture",
     description: "Harmonizes human resources, operational rhythm, and brand culture.",
+    oracleInsight: "Synchronizing human capital to the rhythm of elite performance culture.",
     color: "from-emerald-600 to-green-700",
     icon: "🤝",
     url: "https://nexus.ai/sync",
     toolCard: {
       purpose: "Harmonizes human resources, operational rhythm, and brand culture.",
-      useThisWhen: ["Team is misaligned", "Culture is toxic", "Hiring fast"],
+      useThisWhen: ["Team is misaligned", "Culture is toxic"],
       inputNeeded: "Team size; Culture goals.",
       outputDelivered: ["Culture Manual", "Alignment SOP"],
       doNotUseWhen: ["Solo founder"],
       bestNextStep: "GG (Systems)",
-      useCases: ["Hiring filter", "Ritual sync", "Brand alignment"]
+      useCases: ["Hiring filter", "Brand alignment"]
     }
   },
-  // --- PAIR T ---
   {
+    suggestedNextNode: "II",
+    suggestedPreviousNode: "RE",
+    squad: SQUADS.SQUAD_8,
     id: "T",
     name: "Tome",
     role: "Rivals",
     description: "Performs a deep autopsy on competitor weaknesses and funnel structure.",
+    oracleInsight: "Conducting a forensic autopsy on competitor weakness and fragility.",
     color: "from-slate-600 to-slate-900",
     icon: "📖",
     url: "https://nexus.ai/tome",
     toolCard: {
       purpose: "Performs a deep autopsy on competitor weaknesses and funnel structure.",
-      useThisWhen: ["Entering new market", "Losing market share", "Strategic planning"],
+      useThisWhen: ["Entering new market", "Losing market share"],
       inputNeeded: "Rival name; Ad library access.",
       outputDelivered: ["Rival Forensics Report", "Exploit Map"],
       doNotUseWhen: ["No clear competitors"],
       bestNextStep: "II (Research)",
-      useCases: ["Funnel hack", "Ad spend audit", "Weakness exploit"]
+      useCases: ["Funnel hack", "Weakness exploit"]
     }
   },
   {
+    suggestedNextNode: "WW",
+    suggestedPreviousNode: "Z",
+    squad: SQUADS.SQUAD_4,
     id: "TT",
     name: "Traction",
     role: "Momentum",
     description: "Turns static energy into high-velocity kinetic forward motion.",
+    oracleInsight: "Igniting static potential into kinetic high-velocity momentum.",
     color: "from-green-600 to-lime-700",
     icon: "🚜",
     url: "https://nexus.ai/traction",
     toolCard: {
       purpose: "Turns static energy into high-velocity kinetic forward motion.",
-      useThisWhen: ["Project stalled", "Launch failed", "Need speed"],
+      useThisWhen: ["Project stalled", "Need speed"],
       inputNeeded: "Stalled project; Resource list.",
       outputDelivered: ["Traction Roadmap", "Momentum Score"],
       doNotUseWhen: ["Already moving fast"],
       bestNextStep: "WW (Speed)",
-      useCases: ["Project kickstart", "Momentum audit", "Friction removal"]
+      useCases: ["Project kickstart", "Friction removal"]
     }
   },
-  // --- PAIR U ---
   {
+    suggestedNextNode: "N",
+    suggestedPreviousNode: "Z",
+    squad: SQUADS.SQUAD_3,
     id: "U",
     name: "Uplift",
     role: "Workflow",
     description: "Secures the perimeter of your deep-work hours and team productivity.",
+    oracleInsight: "Fortifying the deep-work perimeter against all distraction vectors.",
     color: "from-sky-400 to-blue-500",
     icon: "🌤️",
     url: "https://nexus.ai/uplift",
     toolCard: {
       purpose: "Secures the perimeter of your deep-work hours and team productivity.",
-      useThisWhen: ["Overwhelmed", "Missed deadlines", "Focus is scattered"],
+      useThisWhen: ["Overwhelmed", "Focus is scattered"],
       inputNeeded: "Calendar; Task list.",
       outputDelivered: ["Optimized Schedule", "Focus Protocol"],
       doNotUseWhen: ["Workload is light"],
       bestNextStep: "N (SOPs)",
-      useCases: ["Time-blocking build", "Distraction audit", "Ritual design"]
+      useCases: ["Time-blocking build", "Ritual design"]
     }
   },
   {
+    suggestedNextNode: "CC",
+    suggestedPreviousNode: "XX",
+    squad: SQUADS.SQUAD_2,
     id: "UU",
     name: "Util",
     role: "Efficiency",
     description: "Optimizes the allocation of time, money, and energy across the stack.",
+    oracleInsight: "Maximizing total system utility across the entire operational stack.",
     color: "from-lime-600 to-yellow-700",
     icon: "🔋",
     url: "https://nexus.ai/util",
     toolCard: {
       purpose: "Optimizes the allocation of time, money, and energy across the stack.",
-      useThisWhen: ["Burnout risk", "Wasting resources", "Cost cutting"],
+      useThisWhen: ["Burnout risk", "Wasting resources"],
       inputNeeded: "Budget; Resource logs.",
       outputDelivered: ["Efficiency Report", "Utilization Plan"],
       doNotUseWhen: ["Resources are abundant"],
       bestNextStep: "CC (Finance)",
-      useCases: ["Cost audit", "Resource reallocation", "Efficiency hack"]
+      useCases: ["Cost audit", "Resource reallocation"]
     }
   },
-  // --- PAIR V ---
   {
+    suggestedNextNode: "JJ",
+    suggestedPreviousNode: "H",
+    squad: SQUADS.SQUAD_7,
     id: "V",
     name: "Verve",
     role: "Pivot",
     description: "Injects creative 'shocks' into stagnant systems or failing offers.",
+    oracleInsight: "Injecting a creative voltage spike to reanimate a stagnant offer.",
     color: "from-yellow-400 to-orange-500",
     icon: "💫",
     url: "https://nexus.ai/verve",
     toolCard: {
       purpose: "Injects creative 'shocks' into stagnant systems or failing offers.",
-      useThisWhen: ["Growth has stalled", "Offer fatigue", "Market saturation"],
+      useThisWhen: ["Growth has stalled", "Offer fatigue"],
       inputNeeded: "Performance drop; Stale heartbeat.",
       outputDelivered: ["New Angle Deck", "Creative Brief"],
       doNotUseWhen: ["Things are working well"],
-      bestNextStep: "JJ (Activation)",
-      useCases: ["Offer refresh", "Creative angle shift", "Viral pivot"]
+      bestNextStep: "JJ (Sales)",
+      useCases: ["Offer refresh", "Viral pivot"]
     }
   },
   {
+    suggestedNextNode: "ZZ",
+    suggestedPreviousNode: "FF",
+    squad: SQUADS.SQUAD_1,
     id: "VV",
     name: "View",
     role: "Forecasting",
     description: "Predicts future trends and sets long-term sovereign vectors.",
+    oracleInsight: "Projecting long-range sovereign vectors based on future-state reality.",
     color: "from-yellow-600 to-orange-700",
     icon: "🔭",
     url: "https://nexus.ai/view",
     toolCard: {
       purpose: "Predicts future trends and sets long-term sovereign vectors.",
-      useThisWhen: ["Planning long term", "Market shifting", "Future proofing"],
+      useThisWhen: ["Planning long term", "Future proofing"],
       inputNeeded: "Industry news; 10-year goal.",
       outputDelivered: ["Vision Roadmap", "Forecasting Model"],
       doNotUseWhen: ["Survival mode"],
       bestNextStep: "ZZ (Legacy)",
-      useCases: ["Future-proofing", "Trend forecasting", "Long-term mapping"]
+      useCases: ["Future-proofing", "Trend forecasting"]
     }
   },
-  // --- PAIR W ---
   {
+    suggestedNextNode: "DD",
+    suggestedPreviousNode: "AA",
+    squad: SQUADS.SQUAD_4,
     id: "W",
     name: "Warp",
     role: "Launch",
     description: "Accelerates an idea from concept to checkout in 168 hours or less.",
+    oracleInsight: "Compressing six months of launch latency into a single 168-hour sprint.",
     color: "from-indigo-500 to-blue-600",
     icon: "🚀",
     url: "https://nexus.ai/warp",
     toolCard: {
       purpose: "Accelerates an idea from concept to checkout in 168 hours or less.",
-      useThisWhen: ["Speed is critical", "Testing new ideas", "Beating competitors"],
+      useThisWhen: ["Speed is critical", "Testing new ideas"],
       inputNeeded: "Minimum Viable Product; Basic offer.",
       outputDelivered: ["7-Day Sprint Map", "Launch Assets"],
       doNotUseWhen: ["Quality requires long timeline"],
       bestNextStep: "DD (Growth)",
-      useCases: ["MVP Launch", "Flash sale build", "Beta test setup"]
+      useCases: ["MVP Launch", "Beta test setup"]
     }
   },
   {
+    suggestedNextNode: "QQ",
+    suggestedPreviousNode: "TT",
+    squad: SQUADS.SQUAD_4,
     id: "WW",
     name: "Warp+",
     role: "Speed",
     description: "Bends time and market cycles to execute faster than humanly possible.",
+    oracleInsight: "Bending the laws of time to execute at impossible industrial velocity.",
     color: "from-orange-600 to-red-700",
     icon: "🚄",
     url: "https://nexus.ai/warp-speed",
     toolCard: {
       purpose: "Bends time and market cycles to execute faster than humanly possible.",
-      useThisWhen: ["Too slow", "Competitors faster", "Urgency high"],
+      useThisWhen: ["Too slow", "Urgency high"],
       inputNeeded: "Desired speed; Bottlenecks.",
       outputDelivered: ["Warp Schedule", "Velocity Audit"],
       doNotUseWhen: ["Quality will suffer"],
       bestNextStep: "QQ (Metrics)",
-      useCases: ["Time-compression", "Rapid deployment", "High-velocity growth"]
+      useCases: ["Time-compression", "Rapid deployment"]
     }
   },
-  // --- PAIR X ---
   {
+    suggestedNextNode: "L",
+    suggestedPreviousNode: "CR",
+    squad: SQUADS.SQUAD_5,
     id: "X",
     name: "X-Ray",
     role: "Funnels",
     description: "Identifies the invisible friction points killing your funnel conversion.",
+    oracleInsight: "Irradiating the funnel to expose invisible conversion friction.",
     color: "from-slate-500 to-blue-900",
     icon: "🩻",
     url: "https://nexus.ai/xray",
     toolCard: {
       purpose: "Identifies the invisible friction points killing your funnel conversion.",
-      useThisWhen: ["Traffic high, sales low", "Drop-offs are unexplained", "Optimizing leaks"],
+      useThisWhen: ["Traffic high, sales low", "Optimizing leaks"],
       inputNeeded: "Funnel stats; Page speed data.",
       outputDelivered: ["Friction Report", "Optimization List"],
       doNotUseWhen: ["No funnel data exists"],
       bestNextStep: "L (Intent)",
-      useCases: ["Drop-off audit", "Checkout optimization", "Speed test"]
+      useCases: ["Drop-off audit", "Speed test"]
     }
   },
   {
+    suggestedNextNode: "UU",
+    suggestedPreviousNode: "QQ",
+    squad: SQUADS.SQUAD_1,
     id: "XX",
     name: "Xenon",
     role: "Diagnostics",
     description: "Performs deep X-ray diagnostics to find hidden fractures in the machine.",
+    oracleInsight: "Diagnosing deep structural fractures within the system architecture.",
     color: "from-red-600 to-rose-700",
     icon: "🔦",
     url: "https://nexus.ai/xenon",
     toolCard: {
       purpose: "Performs deep X-ray diagnostics to find hidden fractures in the machine.",
-      useThisWhen: ["System failing", "Unknown errors", "Health check"],
+      useThisWhen: ["System failing", "Health check"],
       inputNeeded: "Full business data; System logs.",
       outputDelivered: ["Diagnostic Report", "Repair List"],
       doNotUseWhen: ["Ignorance is preferred"],
       bestNextStep: "UU (Efficiency)",
-      useCases: ["Vulnerability audit", "Fracture detection", "Structural check"]
+      useCases: ["Vulnerability audit", "Structural check"]
     }
   },
-  // --- PAIR Y ---
   {
+    suggestedNextNode: "CC",
+    suggestedPreviousNode: "VA",
+    squad: SQUADS.SQUAD_5,
     id: "Y",
     name: "Yield",
     role: "Upsell",
     description: "Squeezes maximum lifetime value (LTV) through value-add upsells.",
+    oracleInsight: "Extracting maximum lifetime value from every acquired unit.",
     color: "from-emerald-500 to-green-600",
     icon: "🌾",
     url: "https://nexus.ai/yield",
     toolCard: {
       purpose: "Squeezes maximum lifetime value (LTV) through value-add upsells.",
-      useThisWhen: ["LTV is low", "Customer trust is high", "Leaving money on table"],
+      useThisWhen: ["LTV is low", "Customer trust is high"],
       inputNeeded: "Customer list; Product suite.",
       outputDelivered: ["Upsell Map", "Value-Add Copy"],
       doNotUseWhen: ["Initial offer is failing"],
-      bestNextStep: "M (Referrals)",
-      useCases: ["Post-purchase offer", "Downsell sequence", "Bundle design"]
+      bestNextStep: "CC (Finance)",
+      useCases: ["Post-purchase offer", "Bundle design"]
     }
   },
   {
+    suggestedNextNode: "O",
+    suggestedPreviousNode: "CC",
+    squad: SQUADS.SQUAD_3,
     id: "YY",
     name: "Yield+",
     role: "Profit",
     description: "Squeezes every drop of profit from existing assets and dead leads.",
+    oracleInsight: "Harvesting dormant profit reservoirs from inactive asset lists.",
     color: "from-rose-600 to-pink-700",
     icon: "💰",
     url: "https://nexus.ai/yield-strat",
     toolCard: {
       purpose: "Squeezes every drop of profit from existing assets and dead leads.",
-      useThisWhen: ["Maximizing return", "Assets underutilized", "Cash flow needed"],
+      useThisWhen: ["Maximizing return", "Cash flow needed"],
       inputNeeded: "Asset list; Dead leads.",
       outputDelivered: ["Profit Yield Map", "Asset Report"],
       doNotUseWhen: ["No assets exist"],
-      bestNextStep: "ZZ (Legacy)",
-      useCases: ["Dead-lead monetizing", "License strategy", "Yield maximization"]
+      bestNextStep: "O (Exit)",
+      useCases: ["Dead-lead monetizing", "License strategy"]
     }
   },
-  // --- PAIR Z ---
   {
+    suggestedNextNode: "QQ",
+    suggestedPreviousNode: "AA",
+    squad: SQUADS.SQUAD_2,
     id: "Z",
     name: "Zenith",
-    role: "Trigger",
-    description: "Initiates the multi-agent work chains that run the entire itsAI machine.",
+    role: "Timeline",
+    description: "Anchors high-level strategy into reality-adjusted execution timelines.",
+    oracleInsight: "Anchoring abstract strategy into reality-adjusted execution timelines.",
     color: "from-purple-600 to-indigo-600",
     icon: "⚡",
     url: "https://nexus.ai/zenith",
     toolCard: {
-      purpose: "Initiates the multi-agent work chains that run the entire itsAI machine.",
-      useThisWhen: ["Starting a complex workflow", "Connecting multiple agents", "Orchestration"],
-      inputNeeded: "User intent; Goal status.",
-      outputDelivered: ["Active Work-Chain", "Status Update"],
-      doNotUseWhen: ["Task is simple single-step"],
-      bestNextStep: "ALL",
-      useCases: ["Starting the engine", "Chain handoff", "Global status check"]
+      purpose: "Constructs reality-adjusted timelines and enforces strict milestones.",
+      useThisWhen: ["Deadlines are missed", "Projects drag on"],
+      inputNeeded: "Project goal; Resource availability.",
+      outputDelivered: ["Reality-adjusted timeline", "Enforced milestones"],
+      doNotUseWhen: ["No clear goal exists"],
+      bestNextStep: "QQ (Quota)",
+      useCases: ["Project scheduling", "Deadline enforcement"]
     }
   },
   {
+    suggestedNextNode: "EXIT",
+    suggestedPreviousNode: "O",
+    squad: SQUADS.SQUAD_1,
     id: "ZZ",
     name: "Zenith+",
     role: "Legacy",
     description: "Architecting the final payout, transition to Chairman, and 2026 legacy.",
+    oracleInsight: "Architecting the final transition from Founder to Sovereign Chairman.",
     color: "from-pink-600 to-purple-800",
     icon: "🌌",
     url: "https://nexus.ai/zenith-legacy",
     toolCard: {
       purpose: "Architecting the final payout, transition to Chairman, and 2026 legacy.",
-      useThisWhen: ["Exiting", "Retiring", "Legacy building"],
+      useThisWhen: ["Exiting", "Legacy building"],
       inputNeeded: "Exit goals; Wealth target.",
       outputDelivered: ["Legacy Blueprint", "Zenith Document"],
       doNotUseWhen: ["Just starting out"],
       bestNextStep: "EXIT",
-      useCases: ["Succession plan", "Sale negotiation", "Legacy design"]
+      useCases: ["Succession plan", "Legacy design"]
+    }
+  },
+  {
+    suggestedNextNode: "H",
+    suggestedPreviousNode: "E",
+    squad: SQUADS.SQUAD_6,
+    id: "WA",
+    name: "Watch",
+    role: "Reputation",
+    description: "Monitors the digital sphere for brand sentiment and threat vectors.",
+    oracleInsight: "Monitoring the digital sphere for hostile sentiment vectors.",
+    color: "from-slate-500 to-gray-600",
+    icon: "👁️",
+    toolCard: {
+      purpose: "Monitors the digital sphere for brand sentiment and threat vectors.",
+      useThisWhen: ["Brand sentiment is unknown", "Fearing a PR crisis"],
+      inputNeeded: "Brand keywords; Competitor names.",
+      outputDelivered: ["Reputation monitoring plan", "Alert trigger map"],
+      doNotUseWhen: ["Brand is invisible"],
+      bestNextStep: "H (Hush)",
+      useCases: ["Crisis detection", "Sentiment tracking"]
+    }
+  },
+  {
+    suggestedNextNode: "BA",
+    suggestedPreviousNode: "BA",
+    squad: SQUADS.SQUAD_6,
+    id: "PR",
+    name: "Proof",
+    role: "Reviews",
+    description: "Systematizes the collection and display of high-leverage social proof.",
+    oracleInsight: "Systematizing the extraction of high-leverage social proof assets.",
+    color: "from-yellow-400 to-amber-500",
+    icon: "⭐",
+    toolCard: {
+      purpose: "Systematizes the collection and display of high-leverage social proof.",
+      useThisWhen: ["Trust is low", "Conversion is suffering"],
+      inputNeeded: "Customer list; Review platforms.",
+      outputDelivered: ["Review pipeline", "Social proof system"],
+      doNotUseWhen: ["No customers yet"],
+      bestNextStep: "BA (Badge)",
+      useCases: ["Automated review request", "Testimonial display"]
+    }
+  },
+  {
+    suggestedNextNode: "FF",
+    suggestedPreviousNode: "II",
+    squad: SQUADS.SQUAD_8,
+    id: "CU",
+    name: "Current",
+    role: "Trends",
+    description: "Analyzes real-time market movements to identify rising tides.",
+    oracleInsight: "Analyzing real-time market currents to identify rising tides.",
+    color: "from-blue-400 to-cyan-500",
+    icon: "📈",
+    toolCard: {
+      purpose: "Analyzes real-time market movements to identify rising tides.",
+      useThisWhen: ["Market feels stale", "Seeking new angles"],
+      inputNeeded: "Industry vertical; Competitor list.",
+      outputDelivered: ["Trend analysis", "Market movement report"],
+      doNotUseWhen: ["Strategy is fixed"],
+      bestNextStep: "FF (Flux)",
+      useCases: ["Newsjacking", "Viral content ideas"]
+    }
+  },
+  {
+    suggestedNextNode: "AA",
+    suggestedPreviousNode: "II",
+    squad: SQUADS.SQUAD_8,
+    id: "SU",
+    name: "Survey",
+    role: "Sizing",
+    description: "Maps the total addressable market and identifies lucrative pockets.",
+    oracleInsight: "Mapping the total addressable market for lucrative pocket identification.",
+    color: "from-indigo-500 to-violet-600",
+    icon: "🗺️",
+    toolCard: {
+      purpose: "Maps the total addressable market and identifies lucrative pockets.",
+      useThisWhen: ["Entering new niche", "Scaling ad spend"],
+      inputNeeded: "Target demographic; Geographic scope.",
+      outputDelivered: ["Market sizing report", "Opportunity map"],
+      doNotUseWhen: ["Niche is hyper-local"],
+      bestNextStep: "AA (Strategy)",
+      useCases: ["TAM/SAM/SOM calc", "Audience segmentation"]
+    }
+  },
+  {
+    suggestedNextNode: "II",
+    suggestedPreviousNode: "SU",
+    squad: SQUADS.SQUAD_8,
+    id: "RE",
+    name: "Recon",
+    role: "Intel",
+    description: "Provides deep intelligence on the battlefield before tactical deployment.",
+    oracleInsight: "Deploying deep reconnaissance assets before tactical movement.",
+    color: "from-green-600 to-emerald-700",
+    icon: "🔭",
+    toolCard: {
+      purpose: "Provides deep intelligence on the battlefield before tactical deployment.",
+      useThisWhen: ["Launching new campaign", "Blind spots exist"],
+      inputNeeded: "Target sector; Campaign goals.",
+      outputDelivered: ["Market read report", "Pre-move intelligence brief"],
+      doNotUseWhen: ["Already in motion"],
+      bestNextStep: "II (Intel)",
+      useCases: ["Pre-launch scan", "Competitor movement check"]
+    }
+  },
+  {
+    suggestedNextNode: "AN",
+    suggestedPreviousNode: "R",
+    squad: SQUADS.SQUAD_9,
+    id: "RA",
+    name: "Rank",
+    role: "Keywords",
+    description: "Identifies the specific battles you can actually win in the search wars.",
+    oracleInsight: "Identifying winnable keyword battles in the search wars.",
+    color: "from-orange-500 to-red-600",
+    icon: "🏆",
+    toolCard: {
+      purpose: "Identifies the specific battles you can actually win in the search wars.",
+      useThisWhen: ["SEO is failing", "Traffic is low quality"],
+      inputNeeded: "Seed keywords; Domain authority.",
+      outputDelivered: ["Winnable keyword shortlist", "Priority score"],
+      doNotUseWhen: ["No content strategy"],
+      bestNextStep: "AN (Anchor)",
+      useCases: ["Keyword gap analysis", "Low-hanging fruit"]
+    }
+  },
+  {
+    suggestedNextNode: "X",
+    suggestedPreviousNode: "R",
+    squad: SQUADS.SQUAD_9,
+    id: "CR",
+    name: "Crawl",
+    role: "Tech SEO",
+    description: "Scans the technical infrastructure for invisible friction and errors.",
+    oracleInsight: "Scanning technical infrastructure for invisible friction points.",
+    color: "from-slate-600 to-gray-700",
+    icon: "🕷️",
+    toolCard: {
+      purpose: "Scans the technical infrastructure for invisible friction and errors.",
+      useThisWhen: ["Rankings dropped", "Site speed is slow"],
+      inputNeeded: "Site URL; Search Console access.",
+      outputDelivered: ["Technical SEO audit", "Fix list"],
+      doNotUseWhen: ["Site is brand new"],
+      bestNextStep: "X (Funnels)",
+      useCases: ["Broken link check", "Core Web Vitals fix"]
+    }
+  },
+  {
+    suggestedNextNode: "SI",
+    suggestedPreviousNode: "RA",
+    squad: SQUADS.SQUAD_9,
+    id: "AN",
+    name: "Anchor",
+    role: "Content",
+    description: "Optimizes on-page content to lock in relevance and authority.",
+    oracleInsight: "Locking in on-page relevance for maximum authority signaling.",
+    color: "from-blue-600 to-indigo-700",
+    icon: "⚓",
+    toolCard: {
+      purpose: "Optimizes on-page content to lock in relevance and authority.",
+      useThisWhen: ["Content is flat", "Rankings are stuck"],
+      inputNeeded: "Target keyword; Draft content.",
+      outputDelivered: ["Content brief", "On-page optimization spec"],
+      doNotUseWhen: ["Keyword is unreachable"],
+      bestNextStep: "SI (Signal)",
+      useCases: ["Blog post optimization", "Landing page SEO"]
+    }
+  },
+  {
+    suggestedNextNode: "E",
+    suggestedPreviousNode: "AN",
+    squad: SQUADS.SQUAD_9,
+    id: "SI",
+    name: "Signal",
+    role: "Backlinks",
+    description: "Builds the external authority signals required for domain dominance.",
+    oracleInsight: "Constructing external authority signals for domain dominance.",
+    color: "from-cyan-500 to-blue-600",
+    icon: "📡",
+    toolCard: {
+      purpose: "Builds the external authority signals required for domain dominance.",
+      useThisWhen: ["Authority is low", "Competitors are outranking"],
+      inputNeeded: "Linkable assets; Outreach list.",
+      outputDelivered: ["Link building target list", "Outreach angle"],
+      doNotUseWhen: ["Content is weak"],
+      bestNextStep: "E (Social)",
+      useCases: ["Guest post strategy", "Broken link building"]
+    }
+  },
+  {
+    suggestedNextNode: "CA",
+    suggestedPreviousNode: "PP",
+    squad: SQUADS.SQUAD_10,
+    id: "SH",
+    name: "Shelf",
+    role: "Product",
+    description: "Optimizes the product presentation for maximum desire and conversion.",
+    oracleInsight: "Optimizing product presentation for maximum desire induction.",
+    color: "from-purple-500 to-pink-600",
+    icon: "🛍️",
+    toolCard: {
+      purpose: "Optimizes the product presentation for maximum desire and conversion.",
+      useThisWhen: ["Traffic bounces", "Add-to-cart is low"],
+      inputNeeded: "Product URL; Conversion data.",
+      outputDelivered: ["Optimized product page copy", "Structure audit"],
+      doNotUseWhen: ["Product is unproven"],
+      bestNextStep: "CA (Cart)",
+      useCases: ["Description rewrite", "Image gallery audit"]
+    }
+  },
+  {
+    suggestedNextNode: "SE",
+    suggestedPreviousNode: "SH",
+    squad: SQUADS.SQUAD_10,
+    id: "CA",
+    name: "Cart",
+    role: "Recovery",
+    description: "Recovers lost revenue from users who abandoned the transaction.",
+    oracleInsight: "Recovering lost revenue from abandoned transaction events.",
+    color: "from-green-500 to-emerald-600",
+    icon: "🛒",
+    toolCard: {
+      purpose: "Recovers lost revenue from users who abandoned the transaction.",
+      useThisWhen: ["Cart abandonment is high", "Revenue is leaking"],
+      inputNeeded: "Checkout flow; Email provider.",
+      outputDelivered: ["Abandoned cart recovery sequence", "Friction removal"],
+      doNotUseWhen: ["Checkout is broken"],
+      bestNextStep: "SE (Seal)",
+      useCases: ["Email sequence", "SMS recovery"]
+    }
+  },
+  {
+    suggestedNextNode: "Y",
+    suggestedPreviousNode: "SE",
+    squad: SQUADS.SQUAD_10,
+    id: "VA",
+    name: "Vault",
+    role: "Upsell",
+    description: "Increases average order value through strategic bumps and upsells.",
+    oracleInsight: "Increasing average order value through strategic capital bumps.",
+    color: "from-amber-500 to-orange-600",
+    icon: "🏦",
+    toolCard: {
+      purpose: "Increases average order value through strategic bumps and upsells.",
+      useThisWhen: ["AOV is low", "Margins are thin"],
+      inputNeeded: "Product catalog; Pricing model.",
+      outputDelivered: ["Upsell stack", "Order bump copy"],
+      doNotUseWhen: ["Core offer is weak"],
+      bestNextStep: "Y (Yield)",
+      useCases: ["One-click upsell", "Checkout bump"]
+    }
+  },
+  {
+    suggestedNextNode: "BA",
+    suggestedPreviousNode: "CA",
+    squad: SQUADS.SQUAD_10,
+    id: "SE",
+    name: "Seal",
+    role: "Checkout",
+    description: "Seals the leaks in the final checkout flow to maximize captured revenue.",
+    oracleInsight: "Sealing the final checkout flow to maximize revenue capture.",
+    color: "from-slate-700 to-black",
+    icon: "🔒",
+    toolCard: {
+      purpose: "Seals the leaks in the final checkout flow to maximize captured revenue.",
+      useThisWhen: ["Drop-off at payment", "Trust issues"],
+      inputNeeded: "Checkout analytics; User recordings.",
+      outputDelivered: ["Checkout friction audit", "Fix list"],
+      doNotUseWhen: ["Traffic is zero"],
+      bestNextStep: "BA (Badge)",
+      useCases: ["Form optimization", "Payment option audit"]
+    }
+  },
+  {
+    suggestedNextNode: "PR",
+    suggestedPreviousNode: "SE",
+    squad: SQUADS.SQUAD_10,
+    id: "BA",
+    name: "Badge",
+    role: "Trust",
+    description: "Deploys psychological trust signals to eliminate buyer hesitation.",
+    oracleInsight: "Deploying psychological trust signals to eliminate hesitation.",
+    color: "from-blue-400 to-indigo-500",
+    icon: "🛡️",
+    toolCard: {
+      purpose: "Deploys psychological trust signals to eliminate buyer hesitation.",
+      useThisWhen: ["Conversion is low", "Brand is new"],
+      inputNeeded: "Certifications; Reviews; Policies.",
+      outputDelivered: ["Trust signal stack", "Social proof plan"],
+      doNotUseWhen: ["Product is a scam"],
+      bestNextStep: "PR (Proof)",
+      useCases: ["Trust badge placement", "Guarantee framing"]
     }
   }
 ];
 
-export const INITIAL_GREETING = "Nexus connection established. I am [TELEPORT -> ORC].\n\nTo begin our orchestration protocol, please specify the **Target Tone for your project assets** from the options below.";
+export const INITIAL_GREETING = "Sovereign Link Active. Accessing The Oracle Central Command.\n\nThe full **A-ZZ Nexus Fleet** is online. I am optimized for Intelligent System Orchestration and Customized Workflow Generation.\n\nPlease state your primary mission or the tactical result you require.";
 
-export const INITIAL_CHOICES = [
-  "Elite Authority",
-  "Direct Response",
-  "Empathetic Partner",
-  "Clinical Logic",
-  "Rebellious Challenger",
-  "Quiet Luxury",
-  "High-Octane Hype",
-  "Radical Transparency"
-];
+export const INITIAL_CHOICES = ["Generate a strategic workflow", "Orchestrate acquisition growth", "Diagnose system friction"];

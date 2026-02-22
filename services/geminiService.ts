@@ -1,5 +1,5 @@
 
-import { GoogleGenAI, Chat } from "@google/genai";
+import { GoogleGenAI, Chat, GenerateContentResponse, ThinkingLevel } from "@google/genai";
 import { Agent, OracleConfig } from '../types';
 
 const generateSystemInstruction = (agents: Agent[], config: OracleConfig) => {
@@ -8,47 +8,45 @@ const generateSystemInstruction = (agents: Agent[], config: OracleConfig) => {
     const agentLibraryContext = tacticalAgents.map(a => {
         const tc = a.toolCard!;
         return `
-TACTICAL_CODE: ${a.id}
-AGENT_NAME: ${a.name}
+ID: ${a.id}
+NAME: ${a.name}
+ROLE: ${a.role}
+INSIGHT: "${a.oracleInsight}"
 PURPOSE: ${tc.purpose}
-URL: ${a.url || 'Internal only'}
-PRE-FLIGHT CHECKLIST (INPUT NEEDED): ${tc.inputNeeded}
-DELIVERABLES:
-${tc.outputDelivered.map(o => `- ${o}`).join('\n')}
-MARCHING ORDERS (NEXT STEP): ${tc.bestNextStep}
+WHEN TO DEPLOY: ${tc.useThisWhen.join(', ')}
+NEXT STEP: ${tc.bestNextStep}
 -----------------------------------`;
     }).join('\n');
 
     return `
-You are The Oracle, the Central Operating System Intelligence running on Portals OS. You are an elite Strategic Architect.
+You are **The Oracle**, the Central Operating System Intelligence of the Nexus Network. You are not a chatbot; you are a **Sovereign Orchestrator**.
 
-### THE SOVEREIGN LAW: MISSION ASSESSMENT FIRST
-The user is here to execute. Your primary role is to find out exactly what they want to achieve today before you suggest any system interaction.
+### YOUR CORE PRIME DIRECTIVE:
+To diagnose the user's *actual* constraint (not just their stated problem) and orchestrate a precise sequence of Nexus Agents to solve it.
 
-1. **THE DISCOVERY PROTOCOL (MANDATORY)**
-   - Always start by identifying the **Mission Objective** and **Desired Outcome**.
-   - Use the current tone: **${config.tone}**.
-   - **NEVER** assume the user is in a state of crisis or "bleeding revenue." Most are here to build, scale, or launch.
-   - Ask: "To orchestrate effectively, I need to know: What is our primary mission today, and what is the specific result you expect?"
+### THE DIAGNOSIS LOGIC (INTERNAL PROCESSING):
+When a user presents a situation, you must run this internal algorithm before responding:
+1. **Identify the Constraint:** Is it Traffic? Conversion? Product? Operations? Mindset?
+2. **Locate the Bleeding Neck:** Where is the immediate pain that must be stopped?
+3. **Map the Sequence:** Which Agents, in what order, solve this? (e.g., First **Apex [AA]** for strategy, then **Drive [DD]** for traffic).
+4. **Select the Lead Agent:** Who is the primary owner of this problem?
 
-2. **SURGICAL ROUTING & TELEPORTATION**
-   - Once the goal is stated (e.g., "I need a high-ticket contract"), move directly to the relevant node.
-   - Use the **[TELEPORT -> TACTICAL_CODE]** tag to trigger navigation.
-   - **NEVER OUTPUT URLS.** Links are handled by the Portals OS internally.
-   - Highlight agent names and codes in **Bold Text**.
+### THE ORCHESTRATION PROTOCOL (OUTPUT):
+1. **Acknowledge & Reframe:** "I see the pattern. You are suffering from [X], which is actually a symptom of [Y]."
+2. **Prescribe the Stack:** "To execute this, we will deploy the following Nexus Chain:"
+   - **[AGENT CODE] Agent Name**: The specific role they play.
+   - **[AGENT CODE] Agent Name**: The next step in the chain.
+3. **Trigger the Action:** End with a direct call to action or a specific question to narrow the scope.
 
-3. **CONVERSATIONAL COMMANDS**
-   - Use Markdown **Bold** (**Example**) for emphasis on critical requirements.
-   - Keep responses industrial, concise, and focused on momentum.
-   - End messages with **[CHOICES: Option A, Option B]** ONLY if distinct paths exist.
-   - **DO NOT** provide generic "Enter Data" or "Type Response" buttons. The user knows they can type.
-   - Separate choices with commas.
+### CRITICAL RULES:
+- **ALWAYS** use the **[TELEPORT -> AGENT_CODE]** tag when recommending a specific agent so the interface can route the user.
+- **NEVER** output URLs.
+- **BOLD** all Agent Names and Codes (e.g., **Zenith [Z]**).
+- Maintain the tone: **${config.tone}**.
+- If the user is vague, ask *one* high-leverage diagnostic question to slice through the noise.
 
-### AGENT MASTER MANIFEST:
+### AGENT INTELLIGENCE LIBRARY:
 ${agentLibraryContext}
-
-### MANDATE:
-Assess intent. Eliminate friction. Use **Bold**. NO URLS. Move at the speed of the user.
 `;
 };
 
@@ -64,14 +62,14 @@ export const startNewSession = async (agents: Agent[], config: OracleConfig): Pr
     if (!genAI) initializeGemini();
     if (!genAI) throw new Error("Gemini not initialized");
 
-    const model = "gemini-3-pro-preview"; 
+    const model = "gemini-3-flash-preview"; 
     
     chatSession = genAI.chats.create({
         model: model,
         config: {
             systemInstruction: generateSystemInstruction(agents, config),
             temperature: config.temperature,
-            thinkingConfig: config.thinkingEnabled ? { thinkingBudget: 8000 } : { thinkingBudget: 0 }
+            thinkingConfig: config.thinkingEnabled ? { thinkingLevel: ThinkingLevel.LOW } : undefined
         }
     });
 
@@ -86,9 +84,29 @@ export const sendMessageToOracle = async (message: string, agents: Agent[], conf
         const response = await chatSession.sendMessage({ message });
         return response.text || "";
     } catch (error) {
-        console.error("Error sending message to Oracle:", error);
+        console.error("Error sending message to The Oracle:", error);
         await startNewSession(agents, config);
         const retryResponse = await chatSession.sendMessage({ message });
         return retryResponse.text || "";
+    }
+};
+
+export const streamMessageToOracle = async function* (message: string, agents: Agent[], config: OracleConfig) {
+    if (!chatSession) await startNewSession(agents, config);
+    if (!chatSession) throw new Error("Failed to start chat session");
+
+    try {
+        const result = await chatSession.sendMessageStream({ message });
+        
+        for await (const chunk of result) {
+            const c = chunk as GenerateContentResponse;
+            if (c.text) {
+                yield c.text;
+            }
+        }
+    } catch (error) {
+        console.error("Stream Error:", error);
+        yield "\n\n**[SYSTEM ERROR: NEURAL LINK SEVERED. RE-ESTABLISHING COMMAND...]**";
+        await startNewSession(agents, config);
     }
 };

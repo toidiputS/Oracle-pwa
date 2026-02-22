@@ -5,7 +5,7 @@ import { Agent } from './types';
 // --- PORTALS OS INTEGRATION LAYER ---
 
 export interface PortalsNodeDefinition {
-    id: string;              // Unique Node ID (e.g., 'A', 'ORC')
+    id: string;              // Unique Node ID (e.g., 'A', 'ONE')
     label: string;           // Window/Tab Title
     icon: string;            // Emoji or Image URL
     themeGradient: string;   // Tailwind string for window borders/glows
@@ -22,8 +22,8 @@ export interface PortalsNodeDefinition {
  * Converts a Nexus Agent into a Portals OS Node Definition.
  */
 const convertAgentToPortalNode = (agent: Agent): PortalsNodeDefinition => {
-    // Grouping logic: 'System' for Oracle, 'Alpha', 'Beta', etc. for pairs
-    const sector = agent.id === 'ORC' ? 'CORE_SYSTEM' : `SECTOR_${agent.id.charAt(0)}`;
+    // Grouping logic: 'System' for ONE, 'Alpha', 'Beta', etc. for pairs
+    const sector = agent.id === 'ONE' ? 'CORE_SYSTEM' : `SECTOR_${agent.id.charAt(0)}`;
 
     return {
         id: agent.id,
@@ -33,8 +33,8 @@ const convertAgentToPortalNode = (agent: Agent): PortalsNodeDefinition => {
         // If an external URL exists, use it. Otherwise, deep link into Oracle.
         targetUrl: agent.url || `/?node=${agent.id}`,
         dimensions: {
-            width: agent.id === 'ORC' ? 600 : 1024,
-            height: agent.id === 'ORC' ? 850 : 768,
+            width: agent.id === 'ONE' ? 600 : 1024,
+            height: agent.id === 'ONE' ? 850 : 768,
         },
         sector: sector,
         meta: agent.description
@@ -47,7 +47,7 @@ const convertAgentToPortalNode = (agent: Agent): PortalsNodeDefinition => {
  * This array contains the configuration for every window that can be spawned.
  */
 export const PORTALS_SYSTEM_MANIFEST: PortalsNodeDefinition[] = [
-    convertAgentToPortalNode(ORACLE_NODE), // The Master Node (The Oracle itself)
+    convertAgentToPortalNode(ORACLE_NODE), // The Master Node (ONE itself)
     ...AGENTS.map(convertAgentToPortalNode) // The Tactical Nodes
 ];
 

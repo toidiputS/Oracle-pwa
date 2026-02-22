@@ -1,3 +1,4 @@
+
 import React, { useMemo } from 'react';
 import { Message, Agent } from '../types';
 import { TeleportButton } from './TeleportButton';
@@ -19,7 +20,6 @@ export const ChatBubble: React.FC<ChatBubbleProps> = ({ message, onTeleport, onC
         
         const choiceMatch = text.match(/\[CHOICES:\s*([^\]]+)\]/i);
         if (choiceMatch) {
-            // Split by comma OR pipe to handle model formatting variations, and filter empty
             const extracted = choiceMatch[1].split(/[,|]/).map(c => c.trim()).filter(c => c.length > 0);
             choices = [...choices, ...extracted];
             text = text.replace(/\[CHOICES:\s*[^\]]+\]/i, '').trim();
@@ -29,115 +29,118 @@ export const ChatBubble: React.FC<ChatBubbleProps> = ({ message, onTeleport, onC
     }, [message.text, message.choices]);
 
     const renderContent = (text: string) => {
-        // Safety: Filter out accidentally generated LLM url-leaks (e.g. [Agent] (url) or just (url))
         let processedText = text.replace(/\(https?:\/\/[^\s)]+\)/gi, '');
         processedText = processedText.replace(/\[([^\]]+)\]\s*https?:\/\/[^\s]+/gi, '$1');
 
-        // Combined pattern for Teleport tags AND Bold markers
-        const combinedPattern = /(\[TELEPORT\s*->\s*[^\]]+\]|\*\*.*?\*\*)/gi;
+        const combinedPattern = /(\[TELEPORT\s*->\s*[^\]]+\]|\*\*[^*]+\*\*|\[[A-Z0-9]+\])/g;
         const parts = processedText.split(combinedPattern);
         
         return parts.map((part, i) => {
             if (!part) return null;
 
-            // Handle Teleport Tags
-            if (part.match(/^\[TELEPORT\s*->/i)) {
-                const match = part.match(/\[TELEPORT\s*->\s*([^\]]+)\]/i);
-                if (match) {
-                    const agentName = match[1].trim();
-                    return (
-                        <TeleportButton 
-                            key={`teleport-${i}`} 
-                            agentName={agentName} 
-                            onClick={onTeleport} 
-                            agents={agents}
-                            variant="inline" 
-                        />
-                    );
-                }
-            } 
-            
-            // Handle Bold markers
+            const teleportMatch = part.match(/^\[TELEPORT\s*->\s*([^\]]+)\]$/i);
+            if (teleportMatch) {
+                const agentRef = teleportMatch[1].trim();
+                return <TeleportButton key={`teleport-${i}`} agentName={agentRef} onClick={onTeleport} agents={agents} variant="inline" />;
+            }
+
             if (part.startsWith('**') && part.endsWith('**')) {
-                const innerText = part.slice(2, -2);
-                
-                // Detect if bold text is an Agent reference
-                const matchedAgent = agents.find(a => 
-                    innerText.toLowerCase() === a.name.toLowerCase() ||
-                    innerText.toLowerCase() === a.id.toLowerCase() ||
-                    innerText.toLowerCase().includes(a.name.toLowerCase()) ||
-                    innerText.toLowerCase().includes(`[${a.id.toLowerCase()}]`)
-                );
+                const content = part.slice(2, -2).trim();
+                const matchedAgent = agents.find(a => a.name.toLowerCase() === content.toLowerCase() || a.id.toLowerCase() === content.toLowerCase());
 
                 if (matchedAgent) {
                      return (
-                        <span 
+                        <button 
                             key={i}
                             onClick={() => onTeleport(matchedAgent)}
-                            className="font-black text-white hover:text-cyan-400 cursor-pointer hover:underline decoration-cyan-500 underline-offset-4 transition-colors px-0.5"
-                            title={`Inspect ${matchedAgent.name}`}
+                            className="inline-flex items-center gap-2 align-baseline mx-1 px-3 py-1 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-all group/agent cursor-pointer shadow-lg active:scale-95"
                         >
-                            {innerText}
-                        </span>
+                            <span className="text-xs">{matchedAgent.icon}</span>
+                            <span className="font-bold text-cyan-200 group-hover/agent:text-cyan-400 text-[0.9em] uppercase tracking-wider">
+                                {content}
+                            </span>
+                        </button>
                     );
                 }
-
-                return (
-                    <strong key={i} className="font-black text-white px-0.5">
-                        {innerText}
-                    </strong>
-                );
+                return <strong key={i} className="font-bold text-white tracking-wide">{content}</strong>;
             }
 
+            if (part.startsWith('[') && part.endsWith(']')) {
+                const idRef = part.slice(1, -1);
+                const matchedAgent = agents.find(a => a.id === idRef);
+                if (matchedAgent) {
+                     return (
+                        <button key={i} onClick={() => onTeleport(matchedAgent)} className="inline-flex items-center gap-1 align-baseline mx-1 px-2 py-0.5 bg-slate-800 border border-indigo-500/30 rounded font-mono font-bold text-blue-400 hover:text-blue-300 transition-all">
+                            {part}
+                        </button>
+                    );
+                }
+            }
             return <span key={i}>{part}</span>;
         });
     };
 
     return (
         <div className={`flex flex-col w-full ${isUser ? 'items-end' : 'items-start'} mb-10 group animate-fade-in`}>
-            <div className={`flex w-full ${isUser ? 'justify-end' : 'justify-start'}`}>
-                {!isUser && (
-                    <div className="w-12 h-12 rounded-2xl bg-slate-900 border border-white/10 flex items-center justify-center text-2xl mr-6 shadow-2xl flex-shrink-0 mt-2">
-                        🔮
-                    </div>
-                )}
-                
+            {/* Context Label */}
+            <div className={`flex items-center gap-3 mb-3 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
                 <div className={`
-                    max-w-[85%] md:max-w-[80%] p-6 md:p-8 rounded-[2rem] text-base md:text-lg leading-relaxed transition-all duration-500
+                    w-10 h-10 rounded-xl flex items-center justify-center text-base shadow-2xl border transition-transform duration-500 group-hover:scale-110
                     ${isUser 
-                        ? 'bg-slate-900 border border-white/5 text-slate-100 rounded-tr-none shadow-xl' 
-                        : 'bg-slate-900/40 backdrop-blur-3xl border border-white/5 text-slate-200 rounded-tl-none shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-white/10'
+                        ? 'bg-slate-800 border-slate-700 text-slate-400' 
+                        : 'bg-gradient-to-br from-indigo-950 to-slate-900 border-indigo-500/40 text-white shadow-indigo-500/10'
                     }
                 `}>
-                    {!isUser && (
-                        <div className="flex items-center gap-3 mb-6 text-[10px] font-mono tracking-[0.4em] text-cyan-500/60 uppercase">
-                            <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_10px_rgba(6,182,212,0.6)] animate-pulse"></span>
-                            Intelligence Stream
-                        </div>
-                    )}
-                    <div className="whitespace-pre-wrap font-light tracking-wide">
-                        {message.isTyping ? (
-                            <div className="flex items-center space-x-2 py-2">
-                                <div className="w-2 h-2 bg-cyan-500/40 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-                                <div className="w-2 h-2 bg-cyan-500/40 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-                                <div className="w-2 h-2 bg-cyan-500/40 rounded-full animate-bounce"></div>
-                            </div>
-                        ) : (
-                            renderContent(cleanText)
-                        )}
-                    </div>
+                    {isUser ? '👤' : '🔮'}
+                </div>
+                <div className="flex flex-col">
+                    <span className={`text-[9px] font-black uppercase tracking-[0.4em] ${isUser ? 'text-right text-slate-600' : 'text-slate-400'}`}>
+                        {isUser ? 'AUTHORIZATION_ID' : 'ORCHESTRATOR_ALPHA'}
+                    </span>
+                    <span className={`text-[10px] font-bold ${isUser ? 'text-right text-slate-500' : 'text-slate-300'}`}>
+                        {isUser ? 'Operator' : 'The Oracle'}
+                    </span>
                 </div>
             </div>
 
-            {!isUser && parsedChoices.length > 0 && isLast && (
-                <div className="ml-20 mt-8 flex flex-wrap gap-4 animate-fade-in-up delay-300">
+            {/* Premium Glass Bubble */}
+            <div className={`
+                glass-bubble relative max-w-[92%] md:max-w-[85%] p-7 md:p-9 rounded-[2rem] text-[15px] leading-[1.7]
+                ${isUser ? 'user-bubble rounded-tr-none ml-auto' : 'rounded-tl-none mr-auto'}
+            `}>
+                {message.isTyping ? (
+                    <div className="flex items-center gap-2 h-6">
+                        <span className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                        <span className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                        <span className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce"></span>
+                    </div>
+                ) : (
+                    <div className="whitespace-pre-wrap font-light tracking-wide text-slate-100 italic">
+                        {renderContent(cleanText)}
+                        {message.isStreaming && (
+                            <span className="inline-block w-1.5 h-5 bg-cyan-500 ml-1 animate-pulse align-middle"></span>
+                        )}
+                    </div>
+                )}
+
+                {/* Mirror Reflection Effect at bottom of last bot message */}
+                {!isUser && isLast && (
+                    <div className="absolute -bottom-8 left-4 right-4 h-8 bg-gradient-to-t from-transparent to-indigo-500/5 opacity-50 blur-sm pointer-events-none"></div>
+                )}
+            </div>
+
+            {/* Quick Choices */}
+            {!isUser && parsedChoices.length > 0 && isLast && !message.isStreaming && (
+                <div className="mt-6 flex flex-wrap gap-4 animate-fade-in-up">
                     {parsedChoices.map((choice, idx) => (
                         <button
                             key={idx}
                             onClick={() => onChoiceSelect?.(choice)}
-                            className="chip-reflect"
+                            className="btn-reflect-base btn-reflect-secondary"
                         >
-                            {choice}
+                            <span className="btn-content px-6 py-3 text-[10px] tracking-[0.25em]">
+                                {choice}
+                            </span>
                         </button>
                     ))}
                 </div>

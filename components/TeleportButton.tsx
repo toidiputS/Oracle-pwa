@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Agent } from '../types';
+import { ReflectiveButton } from './ReflectiveButton';
 
 interface TeleportButtonProps {
     agentName: string;
@@ -46,6 +47,7 @@ export const TeleportButton: React.FC<TeleportButtonProps> = ({ agentName, onCli
                         : 'bg-slate-900/60 border-white/10 hover:border-white/40'
                     }
                 `}
+                data-oracle-info={`Teleporting to ${agent.name} // ${agent.role}`}
             >
                 <span className={`text-base ${isActive ? 'scale-110 rotate-[360deg]' : 'grayscale group-hover:grayscale-0'} transition-all duration-700`}>
                     {isActive ? '✨' : agent.icon}
@@ -59,19 +61,23 @@ export const TeleportButton: React.FC<TeleportButtonProps> = ({ agentName, onCli
 
     return (
         <div className="flex flex-col items-center py-8">
-            <button 
+            <ReflectiveButton
+                variant={isActive ? 'secondary' : 'primary'}
                 onClick={handleClick}
                 disabled={isActive}
-                className={`btn-reflect-base px-10 py-6 min-w-[280px] text-base ${isActive ? 'btn-reflect-secondary opacity-50' : 'btn-reflect-primary'}`}
+                className="min-w-[280px]"
+                info={`Initializing connection to the ${agent.name} node.`}
             >
                 <div className="flex items-center gap-4">
                     <span className="text-2xl">{isActive ? '⚙️' : agent.icon}</span>
                     <div className="flex flex-col items-start leading-none">
-                        <span className="text-[10px] uppercase tracking-[0.2em] mb-1">{isActive ? 'Connecting...' : 'Orchestration Hub'}</span>
+                        <span className="text-[10px] uppercase tracking-[0.2em] mb-1">
+                            {isActive ? 'Connecting...' : 'Orchestration Hub'}
+                        </span>
                         <span className="text-lg font-black italic">{agent.name}</span>
                     </div>
                 </div>
-            </button>
+            </ReflectiveButton>
         </div>
     );
 };
